@@ -1,0 +1,25 @@
+{
+  "name": "phase-63",
+  "version": "1.0.0",
+  "description": "web phase 63 hifi unpad",
+  "main": "server.js",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/naufal151/phase-63.git"
+  },
+  "author": "Naufal Ardian",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/naufal151/phase-63/issues"
+  },
+  "homepage": "https://github.com/naufal151/phase-63#readme"
+}
