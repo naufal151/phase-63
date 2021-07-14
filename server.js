@@ -58,16 +58,16 @@ app.get('/', (req, res) => {
 
 // get login route
 app.get('/register', (req, res) => {
-    res.send('This is register page');
+    res.render('register', {message: req.flash('error')});
 });
 
 // get register route
 app.get('/login', (req, res) => {
-    res.send('This is login page');
+    res.render('login', {message: req.flash('error')});
 });
 
 // post register route
-app.post('/register', function (req, res) {
+app.post('/register', (req, res) => {
     User.register({ username: req.body.username }, req.body.password, (err, user) => {
         if (err) {
             res.redirect('/register');
@@ -101,6 +101,7 @@ app.post('/login', (req, res) => {
 });
 
 // listen to port
-app.listen(process.env.PORT || 8000, () => {
-    console.log("Server ready on port 8000");
+const port = process.env.PORT || 8000
+app.listen(port, () => {
+    console.log(`Server started on ${port}`);
 });
