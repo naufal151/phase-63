@@ -11,5 +11,6 @@ ___
 5. If everything above setup, you can run `npm install` on project directory terminal to install all dependencies in package.json
 6. And then, right after installation you can run the application with `node server.js` on project directory terminal
 7. When the server ready, you can run it on your browser with `localhost:8000`
+8. When you start your own development, please make sure you're in your own branch and not in master branch to avoid merge conflicts. You can check it with `git branch` on project directory terminal, if you're still in master branch, create your own branch with `git checkout [your branch name beside master]` e.g. `git checkout albi`
 
 If you still got any problem, feel free to message me.
