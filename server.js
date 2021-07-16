@@ -53,7 +53,7 @@ passport.deserializeUser(User.deserializeUser());
 
 // get home route
 app.get('/', (req, res) => {
-    res.render('home');
+    res.render('index');
 });
 
 // get login route
