@@ -14,6 +14,7 @@
 	<link rel="stylesheet" href="libs/DiagonalSlideshow-master/base.css" >
 </head>
 <body>
+
 	<!--svg-->
 	<svg class="hidden">
 		<symbol id="icon-arrow" viewBox="0 0 24 24">
@@ -40,7 +41,6 @@
 	<div class="preloader-overlay js-preloader">
 		<canvas id="canvas"></canvas>
 		<div class="counter">
-			<p>loading...</p>
 			<h1>0%</h1>
 			<hr>
 		</div>
@@ -80,9 +80,9 @@
 		<!-- HOME-->
 		<div class="page" id="page-home">
 			<div class="container">
-				<h2 class="h2 glitch" data-text="Welcome to">Welcome to</h2>
-				<h2 class="h3 glitch" data-text="Phase 63">Phase 63</h2>
-				<h2 class="h3 glitch" data-text="HIFI FMIPA Unpad">HIFI FMIPA Unpad</h2>
+				<h2 class="h2">Welcome to</h2>
+				<h2 class="h3">Phase 63</h2>
+				<h2 class="h3">HIFI FMIPA Unpad</h2>
 		</div>
 		</div>
 		<!--HOME END-->
@@ -379,5 +379,5 @@
 	<script src="libs/DiagonalSlideshow-master/demo.js"></script>
 
 	<script src="js/common.js"></script>
-</body>
-</html>
+
+<%- include('partials/footer') %>
