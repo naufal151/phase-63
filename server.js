@@ -9,12 +9,13 @@ const flash = require('connect-flash');
 const app = express();
 require('dotenv').config();
 
-
 // set ejs as view engine, set public as assets source, 
 // use body-parser to parse data from body html to server and flash for warning
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+app.use(express.static(__dirname));
 app.use(flash());
 
 // database connection for user session
