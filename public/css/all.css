@@ -74,7 +74,7 @@ h1, h2, h3, h4, h5, h6 {
 
 p {
 	margin-top: 0;
-	margin-bottom: 0.75rem; }
+	margin-bottom: 0.75rem;}
 
 abbr[title],
 abbr[data-original-title] {
@@ -476,6 +476,7 @@ mark,
 	margin-right: auto;
 	margin-left: auto; }
 
+
 .row {
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -484,7 +485,7 @@ mark,
 	-webkit-flex-wrap: wrap;
 	    -ms-flex-wrap: wrap;
 	        flex-wrap: wrap;
-	margin-right: -15px;
+	margin-right: 15px;
 	margin-left: -15px; }
 
 .no-gutters {
@@ -9721,6 +9722,18 @@ then add .animName class to your element
 	src: url("../fonts/Roboto/Roboto-BoldItalic.eot");
 	src: url("../fonts/Roboto/Roboto-BoldItalic.eot?#iefix") format("embedded-opentype"), url("../fonts/Roboto/Roboto-BoldItalic.woff2") format("woff2"), url("../fonts/Roboto/Roboto-BoldItalic.woff") format("woff"), url("../fonts/Roboto/Roboto-BoldItalic.ttf") format("truetype"); }
 
+@font-face {
+	font-family: "Century";
+	font-weight: 300;
+	font-style: normal;
+	src: url("../fonts/Century/CENTURY.TTF") format("truetype");}
+
+@font-face {
+	font-family: "Retroica";
+	font-weight: 300;
+	font-style: normal;
+	src: url("../fonts/Retroica/RETROICA.TTF") format("truetype");}
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -9737,7 +9750,8 @@ time, mark, audio, video {
 	margin: 0;
 	padding: 0;
 	border: 0;
-	vertical-align: baseline; }
+	vertical-align: baseline;
+	}
 
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -10846,3 +10860,113 @@ textarea {
 		letter-spacing: 1px;
 		text-transform: uppercase;
 		padding-top: 20px;}
+
+/* CAROUSEL CSS */
+		/* ------------------------------------------------------------------ */
+/* Slideshow container */
+.slideshow-container {
+	max-width: 1000px;
+	position: relative;
+	margin: auto;
+  }	
+
+.mySlides{
+	text-align: center;
+	margin-top: 30px;
+ } /*@media (min-width: 576px) {
+	.mySlides {
+		max-width: 540px;
+		padding-left: 75px; } }
+	@media (min-width: 768px) {
+	.mySlides {
+		max-width: 720px;
+		padding-left: 75px; } }
+	@media (min-width: 992px) {
+	.mySlides {
+		max-width: 960px;
+		padding-left: 45px; } }
+	@media (min-width: 1200px) {
+	.mySlides {
+		max-width: 1140px;
+		padding-left: 45px; } } */
+  
+  /* Next & previous buttons */
+  .prev, .next {
+	cursor: pointer;
+	position: absolute;
+	top: 50%;
+	width: auto;
+	padding: 16px;
+	margin-top: -22px;
+	color: white;
+	font-weight: bold;
+	font-size: 18px;
+	transition: 0.6s ease;
+	border-radius: 0 3px 3px 0;
+	user-select: none;
+  }
+  
+  /* Position the "next button" to the right */
+  .next {
+	right: 0;
+	border-radius: 3px 0 0 3px;
+  }
+  
+  /* On hover, add a black background color with a little bit see-through */
+  .prev:hover, .next:hover {
+	background-color: rgba(0,0,0,0.8);
+  }
+  
+  /* Caption text */
+  .text {
+	color: #f2f2f2;
+	font-size: 15px;
+	padding: 8px 12px;
+	position: absolute;
+	bottom: 8px;
+	width: 100%;
+	text-align: center;
+  }
+  
+  /* Number text (1/3 etc) */
+  .numbertext {
+	color: #f2f2f2;
+	font-size: 12px;
+	padding: 8px 12px;
+	position: absolute;
+	top: 0;
+  }
+  
+  /* The dots/bullets/indicators */
+  .dot {
+	cursor: pointer;
+	height: 15px;
+	width: 15px;
+	margin: 0 2px;
+	background-color: #bbb;
+	border-radius: 50%;
+	display: inline-block;
+	transition: background-color 0.6s ease;
+  }
+  
+  .active, .dot:hover {
+	background-color: #717171;
+  }
+  
+  /* Fading animation */
+  .fades {
+	-webkit-animation-name: fade;
+	-webkit-animation-duration: 1.5s;
+	animation-name: fade;
+	animation-duration: 1.5s;
+  }
+  
+  @-webkit-keyframes fade {
+	from {opacity: 0.4} 
+	to {opacity: 1}
+  }
+  
+  @keyframes fade {
+	from {opacity: 0.4} 
+	to {opacity: 1}
+  }

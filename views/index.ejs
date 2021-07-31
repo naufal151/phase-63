@@ -12,6 +12,7 @@
 	<link rel="stylesheet" href="css/all.css">
 	<link rel="stylesheet" href="libs/PageStackNavigation/component.css">
 	<link rel="stylesheet" href="libs/DiagonalSlideshow-master/base.css" >
+	
 </head>
 <body>
 
@@ -48,7 +49,6 @@
 		</div>
 		<!-- PRELOADER END -->
 	<% } %>
-	
 
 	<!--STARS BG-->
 	<div class="animation-wrapper">
@@ -83,55 +83,50 @@
 		<!-- ABOUT-->
 		<div class="page" id="page-about">
 			<div class="container-fluid">
-				<div class="row" style="margin-top: 30px;">
+				<div class="row">
 					<div class="col-lg-4 col-xl-6">
-						<img src="img/barber.png">
+						<div class="slideshow-container">
+
+							<div class="mySlides fades">
+							  <div class="numbertext"></div>
+							  <img src="img/logo_all.png" width="550" height="550">
+							  <div class="text"></div>
+							</div>
+						  
+							<div class="mySlides fades">
+							  <div class="numbertext"></div>
+							  <img src="img/Logo_2.png" width="550" height="550">
+							  <div class="text"></div>
+							</div>
+						  
+							<div class="mySlides fades">
+							  <div class="numbertext"></div>
+							  <img src="img/Logo_3.png" width="550" height="550">
+							  <div class="text"></div>
+							</div>
+						  
+							<!-- Next and previous buttons -->
+							<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+							<a class="next" onclick="plusSlides(1)">&#10095;</a>
+						  </div>
+						  <br>
+
+						  <div style="text-align:center; opacity: 0;">
+							<span class="dot" onclick="currentSlide(1)"></span> 
+							<span class="dot" onclick="currentSlide(2)"></span> 
+							<span class="dot" onclick="currentSlide(3)"></span> 
+						  </div>
 					</div>
+
 					<div class="col-lg-8 col-xl-6">
 						<div class="page-about__content">
 							<div class="row mb-2">
 								<div class="col-lg-4">
-									<h6 class="h6">INTRO</h6>
+									<h6 class="h6" style="font-weight: bold; font-size: 22px;">Makna</h6>
 								</div>
 								<div class="col-lg-8">
-										<p>Hello everyone who came to my site. My name is Alexandr Butsaiev. I am 26 years old. I live in Kharkov, Ukraine. At a certain point in my life, I was interested IT technologies. I chose the specialty of a Frontend developer, as it requires some creative abilities and deep practical training in web programming. On this page will be information about my skills.</p>
+										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce elit nisi, aliquet at consectetur nec, varius eget dolor. Donec interdum sem nec odio congue dictum. Donec eget augue justo. Proin bibendum varius mauris. In eget porta elit. Ut eu dui ac est consequat tincidunt sed et tortor. Mauris mollis sapien sem, ac viverra sapien facilisis nec. Pellentesque fermentum magna id pulvinar dictum. Proin bibendum ac tellus vel sagittis. Nulla aliquet ante sit amet auctor sagittis. Mauris dictum bibendum lectus, in lobortis turpis ultricies et. Nunc feugiat ante odio, ac lobortis dui tristique vel. Morbi id tortor posuere, interdum sem eu, mattis felis. Suspendisse posuere dolor eget ipsum faucibus imperdiet.</p>
 										<p>You can also download my <a class="page-about__content-link" href="resume/ALEXANDR-BUTSAIEV-RESUME.pdf">resume</a>.</div></p>
-							</div>
-							<div class="row mb-2">
-								<div class="col-lg-4">
-									<h6 class="h6">EXPERIENCE</h6>
-								</div>
-								<div class="col-lg-8">
-									<h6 class="h6 -opacity">2018 - PRESENT / <a class="page-about__content-link" href="http://itkron.com/">ITkron company</a></h6>
-									<p>Working as a front-end developer, using HTML, CSS, JavaScript.</p>
-								</div>
-							</div>
-							<div class="row mb-2">
-								<div class="col-lg-4">
-									<h6 class="h6">USED TECHNOLOGIES</h6>
-								</div>
-								<div class="col-lg-8">
-									<p>HTML5 CSS3 JavaScript jQuery Sass Bootstrap Gulp Pug WordPress</p>
-								</div>
-							</div>
-							<div class="row mb-2">
-								<div class="col-lg-4">
-									<h6 class="h6">SERVICES</h6>
-								</div>
-								<div class="col-lg-8">
-									<p>- Front-end development</p>
-									<p>- Valid and clean code</p>
-									<p>- Cross-browser, responsive, adaptive development</p>
-								</div>
-							</div>
-							<div class="row mb-2">
-								<div class="col-lg-4">
-									<h6 class="h6">CONTACTS</h6>
-								</div>
-								<div class="col-lg-8">
-									<p>Email: alexandr.butsaiev@gmail.com</p>
-									<p>Phone: +38 063 9909210</p>
-								</div>
 							</div>
 					</div>
 				</div>
@@ -142,7 +137,7 @@
 		<!--LOGIN-->
 		<div class="page" id="page-login">
 			<div class="login">
-				<h2 class="h2" style="margin: auto;">Login</h2>
+				<h2 class="h2" style="margin: auto;"><img src="img/Logo_1.png" width="550" height="550"></h2>
 				<form class="login-form" action="/login" method="POST">
     				<input type="text" name="username" placeholder="Username"><br>
     				<input type="password" name="password" placeholder="Password" autocomplete="off"><br>
@@ -172,5 +167,6 @@
 	<script src="libs/DiagonalSlideshow-master/demo.js"></script>
 
 	<script src="js/common.js"></script>
+	<script src="js/carousel.js"></script>
 
 <%- include('partials/footer') %>
