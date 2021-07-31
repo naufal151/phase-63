@@ -1,7 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
+const multer = require('multer');
+const fs = require('fs');
+const path = require('path');
 const User = require('../models/User');
+const File = require('../models/File');
 
 router.post('/login', (req, res) => {
     const user = new User({
@@ -16,7 +20,7 @@ router.post('/login', (req, res) => {
         }
         else {
             passport.authenticate('local', { failureRedirect: '/login', failureFlash: true })(req, res, () => {
-                res.redirect('/#page-portfolio');
+                res.redirect('/');
             });
         }
     });
@@ -31,6 +35,40 @@ router.post('/register', (req, res) => {
             passport.authenticate('local', { failureFlash: true, failureRedirect: '/register' })(req, res, () => {
                 res.redirect('/');
             });
+        }
+    });
+});
+
+router.get('logout', (req, res) => {
+    req.logout();
+    res.redirect('/');
+});
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads');
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    }
+});
+
+const upload = multer({storage: storage});
+
+router.post('/taskUpload', upload.single('file'), (req, res, next) => {
+    const obj = {
+        desc: req.body.desc,
+        file: {
+            contentType: 'file/pdf',
+        }
+    }
+
+    File.create(obj, (err, file) => {
+        if (err){
+            console.log('error');
+        }
+        else {
+            res.redirect('/taskUpload');
         }
     });
 });
