@@ -10970,3 +10970,8 @@ textarea {
 	from {opacity: 0.4} 
 	to {opacity: 1}
   }
+
+#login-logo{
+	position: relative;
+	top: 35px;
+}
