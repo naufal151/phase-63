@@ -21,8 +21,8 @@ app.use(flash());
 // database connection for user session
 const MongoStore = require('connect-mongo');
 app.use(session({
-    store: MongoStore.create({ mongoUrl: process.env.DATABASE_URL }),
-    secret: process.env.SECRET,
+    store: MongoStore.create({ mongoUrl: "mongodb://localhost:27017/" }),
+    secret: "mongodb://localhost:27017/",
     resave: false,
     saveUninitialized: false
 }));
@@ -32,7 +32,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // connecting to database
-mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect("mongodb://localhost:27017/", { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.set("useCreateIndex", true);
 
 // connect to user model
@@ -49,7 +49,7 @@ app.use('/', routes);
 app.use('/', userRoute);
 
 // listen to port
-const port = process.env.PORT || 8000
+const port = 8000
 app.listen(port, () => {
     console.log(`Server started on ${port}`);
 });
