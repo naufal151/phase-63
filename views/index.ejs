@@ -38,15 +38,17 @@
 	</svg>
 	<!--svg end-->
 
-	<!-- PRELOADER -->
-	<!-- <div class="preloader-overlay js-preloader">
-		<canvas id="canvas"></canvas>
-		<div class="counter">
-			<h1>0%</h1>
-			<hr>
+	<% if(!loggedIn){ %>
+		<!-- PRELOADER -->
+		<div class="preloader-overlay js-preloader">
+			<canvas id="canvas"></canvas>
+			<div class="counter">
+				<h1>0%</h1>
+				<hr>
+			</div>
 		</div>
-	</div> -->
-	<!-- PRELOADER END -->
+		<!-- PRELOADER END -->
+	<% } %>
 
 	<!--STARS BG-->
 	<div class="animation-wrapper">
