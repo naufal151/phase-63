@@ -5,7 +5,6 @@ const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
 const User = require('../models/User');
-const File = require('../models/File');
 
 router.post('/login', (req, res) => {
     const user = new User({
@@ -16,10 +15,11 @@ router.post('/login', (req, res) => {
     req.login(user, (err) => {
         if (err) {
             console.log(err);
+            req.flash('message', 'Username atau Password salah! Coba ulangi lagi.');
             res.redirect('/login');
         }
         else {
-            passport.authenticate('local', { failureRedirect: '/login', failureFlash: true })(req, res, () => {
+            passport.authenticate('local', { failureRedirect: '/login', failureFlash: req.flash('message', 'Username atau Password salah! Coba ulangi lagi.')})(req, res, () => {
                 res.redirect('/');
             });
         }
@@ -27,14 +27,29 @@ router.post('/login', (req, res) => {
 });
 
 router.post('/register', (req, res) => {
-    User.register({ username: req.body.username }, req.body.password, (err, user) => {
-        if (err) {
-            res.redirect('/register');
+    const username = req.body.username;
+
+    User.findOne({'username': username}, (err, user) => {
+        if (err){
+            console.log(err);
         }
         else {
-            passport.authenticate('local', { failureFlash: true, failureRedirect: '/register' })(req, res, () => {
-                res.redirect('/');
-            });
+            if (user){
+                req.flash('message', 'Username sudah digunakan, coba username lain!');
+                res.redirect('/register');
+            }
+            else {
+                User.register({ username: req.body.username }, req.body.password, (err, user) => {
+                    if (err) {
+                        res.redirect('/register');
+                    }
+                    else {
+                        passport.authenticate('local', { failureRedirect: '/register' })(req, res, () => {
+                            res.redirect('/');
+                        });
+                    }
+                });
+            }
         }
     });
 });
@@ -46,29 +61,36 @@ router.get('logout', (req, res) => {
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'uploads');
+        cb(null, 'routes/uploads');
     },
     filename: (req, file, cb) => {
-        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+        cb(null, req.user.username + '@' + new Date().getDate() + '-' + (new Date().getMonth()+1) + '-' + new Date().getFullYear() + '@' + new Date().getHours() + ':' + new Date().getMinutes() + ':' + new Date().getSeconds() + path.extname(file.originalname));
     }
 });
 
 const upload = multer({storage: storage});
 
 router.post('/taskUpload', upload.single('file'), (req, res, next) => {
-    const obj = {
-        desc: req.body.desc,
-        file: {
-            contentType: 'file/pdf',
-        }
-    }
+    User.findById(req.user.id, (err, user) => {
+        const data = fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename));
+        const contentType = 'application/pdf';
 
-    File.create(obj, (err, file) => {
         if (err){
-            console.log('error');
+            console.log(err);
         }
         else {
-            res.redirect('/taskUpload');
+            if (user){
+                user.file.data = data;
+                user.file.contentType = contentType;
+                user.file.date = new Date().getDate() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getFullYear();
+                user.file.time = new Date().getHours() + ':' + new Date().getMinutes() + ':' + new Date().getSeconds();
+                user.save(() => {
+                    res.redirect('/taskUpload');
+                });
+            }
+            else {
+                res.send('user tidak ditemukan');
+            }
         }
     });
 });
