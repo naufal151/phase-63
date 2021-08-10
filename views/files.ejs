@@ -1,0 +1,10 @@
+<%- include('partials/header') %>
+
+<h1>Upload files</h1>
+<% users.forEach((user) => { %>
+    <% if (user.data !== null){ %>
+        <a href="../routes/uploads/<%= user.username %>@<%= user.file.date %>@<%= user.file.time %>.pdf" target="_blank">lihat hasil</a>
+    <% } %>
+<% }) %>
+
+<%- include('partials/footer') %>
