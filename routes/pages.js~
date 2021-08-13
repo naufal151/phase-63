@@ -55,7 +55,7 @@ router.get('/files', (req, res) => {
 
 router.get('/files/:filename', (req, res) => {
 	if (req.isAuthenticated()){
-		res.sendFile(__dirname + '/uploads/' + req.params['filename']);
+		res.sendFile(__dirname + '/uploads/' + req.params);
 	}
 	else {
 		res.redirect('/login');
