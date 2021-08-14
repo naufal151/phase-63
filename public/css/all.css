@@ -74,7 +74,7 @@ h1, h2, h3, h4, h5, h6 {
 
 p {
 	margin-top: 0;
-	margin-bottom: 0.75rem; }
+	margin-bottom: 0.75rem;}
 
 abbr[title],
 abbr[data-original-title] {
@@ -433,12 +433,49 @@ mark,
 		.container {
 			max-width: 1140px; } }
 
+.container {
+	width: 100%;
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto; }
+	@media (min-width: 576px) {
+		.container {
+			max-width: 540px; } }
+	@media (min-width: 768px) {
+		.container {
+			max-width: 720px; } }
+	@media (min-width: 992px) {
+		.container {
+			max-width: 960px; } }
+	@media (min-width: 1200px) {
+		.container {
+			max-width: 1140px; } }
+.container {
+	width: 100%;
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto; }
+	@media (min-width: 576px) {
+		.container {
+			max-width: 540px; } }
+	@media (min-width: 768px) {
+		.container {
+			max-width: 720px; } }
+	@media (min-width: 992px) {
+		.container {
+			max-width: 960px; } }
+	@media (min-width: 1200px) {
+		.container {
+			max-width: 1140px; } }
 .container-fluid {
 	width: 100%;
 	padding-right: 15px;
 	padding-left: 15px;
 	margin-right: auto;
 	margin-left: auto; }
+
 
 .row {
 	display: -webkit-box;
@@ -448,7 +485,7 @@ mark,
 	-webkit-flex-wrap: wrap;
 	    -ms-flex-wrap: wrap;
 	        flex-wrap: wrap;
-	margin-right: -15px;
+	margin-right: 15px;
 	margin-left: -15px; }
 
 .no-gutters {
@@ -9685,6 +9722,18 @@ then add .animName class to your element
 	src: url("../fonts/Roboto/Roboto-BoldItalic.eot");
 	src: url("../fonts/Roboto/Roboto-BoldItalic.eot?#iefix") format("embedded-opentype"), url("../fonts/Roboto/Roboto-BoldItalic.woff2") format("woff2"), url("../fonts/Roboto/Roboto-BoldItalic.woff") format("woff"), url("../fonts/Roboto/Roboto-BoldItalic.ttf") format("truetype"); }
 
+@font-face {
+	font-family: "Century";
+	font-weight: 300;
+	font-style: normal;
+	src: url("../fonts/Century/CENTURY.TTF") format("truetype");}
+
+@font-face {
+	font-family: "Retroica";
+	font-weight: 300;
+	font-style: normal;
+	src: url("../fonts/Retroica/RETROICA.TTF") format("truetype");}
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -9701,7 +9750,9 @@ time, mark, audio, video {
 	margin: 0;
 	padding: 0;
 	border: 0;
-	vertical-align: baseline; }
+	vertical-align: baseline;
+	/* font-family: Century; */
+	}
 
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -9782,28 +9833,32 @@ textarea {
 	overflow-x: hidden; }
 
 ::-webkit-input-placeholder {
-	color: inherit;
+	color: gray;
+	text-align: center;
 	opacity: 1;
 	-webkit-transition: opacity .3s;
 	-o-transition: opacity .3s;
 	transition: opacity .3s; }
 
 ::-moz-placeholder {
-	color: inherit;
+	color: gray;
+	text-align: center;
 	opacity: 1;
 	-webkit-transition: opacity .3s;
 	-o-transition: opacity .3s;
 	transition: opacity .3s; }
 
 :-moz-placeholder {
-	color: inherit;
+	color: gray;
+	text-align: center;
 	opacity: 1;
 	-webkit-transition: opacity .3s;
 	-o-transition: opacity .3s;
 	transition: opacity .3s; }
 
 :-ms-input-placeholder {
-	color: inherit;
+	color: gray;
+	text-align: center;
 	opacity: 1;
 	-webkit-transition: opacity .3s;
 	-o-transition: opacity .3s;
@@ -9999,7 +10054,14 @@ h6, .h6 {
 
 input:not([type="submit"]):not([type="reset"]):not([type="button"]),
 textarea {
-	border: 1px solid #212529; }
+	border: none;
+	border-bottom: 1px solid white;
+	width: 250px;
+	height: 40px;
+	padding-top: 20px;
+	padding-bottom: 10px;
+	text-align: center;
+	opacity: 80%; }
 
 .section {
 	padding: 80px 0; }
@@ -10759,3 +10821,161 @@ textarea {
 			font-size: 1rem; } }
 
 /*# sourceMappingURL=all.css.map */
+
+.login {
+	border: 3px solid var(--gray-dark);
+	background-color: rgba(255, 255, 255, 0.1);
+	padding-right: 15px;
+	padding-left: 15px;
+	padding-bottom: 45px;
+	margin-top: 100px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	position: relative;}
+	@media (min-width: 576px) {
+		.login {
+			max-width: 540px;
+			width: 360px; } }
+	@media (min-width: 768px) {
+		.login {
+			max-width: 720px;
+			width: 480px; } }
+	@media (min-width: 992px) {
+		.login {
+			max-width: 960px;
+			width: 512px; } }
+	@media (min-width: 1200px) {
+		.login {
+			max-width: 1140px;
+			width: 45%; } }
+.login-form{
+	margin: auto;
+	text-align: center; }
+	#login-button {
+		display: inline-block;
+		color: #cecece;
+		font-size: 1.25em;
+		font-weight: bold;
+		position: relative;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		padding-top: 20px;}
+
+/* CAROUSEL CSS */
+		/* ------------------------------------------------------------------ */
+/* Slideshow container */
+.slideshow-container {
+	max-width: 1000px;
+	position: relative;
+	margin: auto;
+  }	
+
+.mySlides{
+	text-align: center;
+	margin-top: 30px;
+ } /*@media (min-width: 576px) {
+	.mySlides {
+		max-width: 540px;
+		padding-left: 75px; } }
+	@media (min-width: 768px) {
+	.mySlides {
+		max-width: 720px;
+		padding-left: 75px; } }
+	@media (min-width: 992px) {
+	.mySlides {
+		max-width: 960px;
+		padding-left: 45px; } }
+	@media (min-width: 1200px) {
+	.mySlides {
+		max-width: 1140px;
+		padding-left: 45px; } } */
+  
+  /* Next & previous buttons */
+  .prev, .next {
+	cursor: pointer;
+	position: absolute;
+	top: 50%;
+	width: auto;
+	padding: 16px;
+	margin-top: -22px;
+	color: white;
+	font-weight: bold;
+	font-size: 18px;
+	transition: 0.6s ease;
+	border-radius: 0 3px 3px 0;
+	user-select: none;
+  }
+  
+  /* Position the "next button" to the right */
+  .next {
+	right: 0;
+	border-radius: 3px 0 0 3px;
+  }
+  
+  /* On hover, add a black background color with a little bit see-through */
+  .prev:hover, .next:hover {
+	background-color: rgba(0,0,0,0.8);
+  }
+  
+  /* Caption text */
+  .text {
+	color: #f2f2f2;
+	font-size: 15px;
+	padding: 8px 12px;
+	position: relative;
+	bottom: 8px;
+	width: 100%;
+	text-align: justify;
+  }
+  
+  /* Number text (1/3 etc) */
+  .numbertext {
+	color: #f2f2f2;
+	font-size: 12px;
+	padding: 8px 12px;
+	position: absolute;
+	top: 0;
+  }
+  
+  /* The dots/bullets/indicators */
+  .dot {
+	cursor: pointer;
+	height: 15px;
+	width: 15px;
+	background-color: white;
+	border-radius: 50%;
+	display: inline-block;
+	transition: background-color 0.6s ease;
+	position: relative;
+	bottom: 50px;
+	margin-left: 2px;
+	margin-right: 2px;
+  }
+  
+  .active, .dot:hover {
+	background-color: #3a3939;
+  }
+  
+  /* Fading animation */
+  .fades {
+	-webkit-animation-name: fade;
+	-webkit-animation-duration: 1.5s;
+	animation-name: fade;
+	animation-duration: 1.5s;
+  }
+  
+  @-webkit-keyframes fade {
+	from {opacity: 0.4} 
+	to {opacity: 1}
+  }
+  
+  @keyframes fade {
+	from {opacity: 0.4} 
+	to {opacity: 1}
+  }
+
+#login-logo{
+	position: relative;
+	top: 35px;
+}
