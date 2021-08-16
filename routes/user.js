@@ -7,7 +7,7 @@ const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
 const User = require('../models/User');
-const Tugas = require('..models/Tugas');
+const Tugas = require('../models/Tugas');
 const Maba = require('../models/Maba');
 
 // route untuk login
