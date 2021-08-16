@@ -14,9 +14,9 @@ router.post('/login', (req, res) => {
 
     req.login(user, (err) => {
         if (err) {
+            res.redirect('/login');
             console.log(err);
             req.flash('message', 'Username atau Password salah! Coba ulangi lagi.');
-            res.redirect('/login');
         }
         else {
             passport.authenticate('local', { failureRedirect: '/login', failureFlash: req.flash('message', 'Username atau Password salah! Coba ulangi lagi.')})(req, res, () => {

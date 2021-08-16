@@ -2,12 +2,36 @@
 
 <h1>Register</h1>
 <p style="color: red;"><%= message %></p>
-<form action="/register" method="POST">
+<form id="reg-form" class="reg-form" action="/register" method="POST">
     <label>Username</label>
-    <input type="text" name="username">
+    <input type="text" id="username" name="Username" placeholder="Username" autocomplete="off">
     <label>Password</label>
-    <input type="password" name="password">
-    <button type="submit">Register</button>
+    <input type="password" id="password" name="Password" placeholder="Password" autocomplete="off">
+    <input type="submit" value="Submit Form"></input>
 </form>
+
+<script>
+    // const form = document.getElementById("reg-form");
+    // form.addEventListener('submit', registerUser);
+
+    // async function registerUser(event) {
+    //     event.preventDefault()
+    //     const username = document.getElementById('username').value;
+    //     const password = document.getElementById('password').value;
+
+    //     const result = await fetch('/api/register', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify({
+    //             username,
+    //             password
+    //         })
+    //     }).then((res) => res.json())
+
+    //     console.log(result)
+    // }
+</script>
 
 <%- include('partials/footer') %>

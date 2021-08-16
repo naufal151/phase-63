@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
+const app = express();
+app.use(express.json());
 
 router.get('/', (req, res) => {
     res.render('index', {loggedIn: req.isAuthenticated()});
@@ -13,6 +15,11 @@ router.get('/login', (req, res) => {
 router.get('/register', (req, res) => {
     res.render('register', {message: req.flash('message')});
 });
+
+router.get('/home', (req, res) => {
+    res.render('home', {message: req.flash('message')});
+});
+
 
 router.get('/taskUpload', (req, res) => {
     if (req.isAuthenticated()){
