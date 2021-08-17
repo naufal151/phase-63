@@ -51,11 +51,32 @@ router.post('/register', (req, res) => {
                     }
                     else {
                         passport.authenticate('local', { failureRedirect: '/register' })(req, res, () => {
-                            res.redirect('/');
+                            res.render('profile');
                         });
                     }
                 });
             }
+        }
+    });
+});
+
+// route untuk profile nama, kelompok, npm
+router.post('/profile', (req, res) => {
+    const userProfile = new Maba({
+        user: req.user.id,
+        nama: req.body.nama,
+        npm: req.body.npm,
+        kelompok: req.body.kelompok
+    });
+
+    userProfile.save((err) => {
+        if (err){
+            console.log(err);
+        }
+        else {
+            Maba.find({}).populate('user').exec((err, maba) => {
+                res.redirect('/dashMaba');
+            });
         }
     });
 });
@@ -97,7 +118,7 @@ router.post('/mabaUpload', upload.single('file'), (req, res, next) => {
                     user.file.date = new Date().getDate() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getFullYear();
                     user.file.time = new Date().getHours() + ':' + new Date().getMinutes() + ':' + new Date().getSeconds();
                     user.save(() => {
-                        res.redirect('/taskUpload');
+                        res.redirect('/dashMaba');
                     });
                 }
                 else {
@@ -120,29 +141,23 @@ router.post('/panitUpload', (req, res) => {
     const role = req.user.role;
 
     if (role === 'pengembangan' || role.split('_')[0] === 'asesor'){
-        Tugas.findOne({'user': req.user.id}, (err, tugas) => {
+        const tugas = new Tugas({
+            user: req.user.id,
+            judul: req.body.judul,
+            deskripsi: req.body.deskripsi,
+            deadline: req.body.deadline
+        });
+
+        tugas.save((err) => {
             if (err){
                 console.log(err);
             }
             else {
-                if (tugas){
-                    tugas.judul = judul;
-                    tugas.deskripsi = deskripsi;
-                    tugas.deadline = deadline;
-    
-                    tugas.save(() => {
-                        res.redirect('/');
-                    });
-                }
-                else {
-                    req.flash('message', 'Tidak dapat mengupload tugas!');
-                    res.redirect('/');
-                }
+                Tugas.find({}).populate('user').exec((err, tugas) => {
+                    res.redirect('/dashPanit');
+                })
             }
         });
-    }
-    else {
-        res.redirect('/');
     }
 });
 
@@ -170,8 +185,8 @@ router.post('/statusTugas/:mabaId', (req, res) => {
     }
 });
 
-// route untuk profil maba
-router.post('/profil', (req, res) => {
+// route untuk ganti profil maba
+router.post('/profileChange', (req, res) => {
     const nama = req.body.nama;
     const npm = req.body.npm;
 

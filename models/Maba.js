@@ -2,8 +2,9 @@
 
 const mongoose = require('mongoose');
 const passportLocalMongoose = require('passport-local-mongoose');
+const User = require('./User');
 
-const MyObjectId = mongoose.Types.ObjectId;
+const MyObjectId = mongoose.Schema.Types.ObjectId;
 
 const mabaSchema = new mongoose.Schema({
     user: { 
