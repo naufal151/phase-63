@@ -14,6 +14,14 @@ router.get('/register', (req, res) => {
     res.render('register', {message: req.flash('message')});
 });
 
+router.get('/dashboard', (req, res) => {
+    res.render('dashboard', {message: req.flash('message')});
+});
+
+router.get('/home', (req, res) => {
+    res.render('home', {message: req.flash('message')});
+});
+
 router.get('/taskUpload', (req, res) => {
     if (req.isAuthenticated()){
         res.render('upload')
