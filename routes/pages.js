@@ -21,17 +21,12 @@ router.get('/register', (req, res) => {
     res.render('register', {message: req.flash('message')});
 });
 
-<<<<<<< HEAD
 router.get('/home', (req, res) => {
     res.render('home', {message: req.flash('message')});
 });
 
-
-router.get('/taskUpload', (req, res) => {
-=======
 // route untuk menampilkan halaman dashboard untuk maba
 router.get('/dashMaba', (req, res) => {
->>>>>>> edc9fa747a00553ea01b267e1a6166a5e8bc317c
     if (req.isAuthenticated()){
         if (req.user.role === 'maba'){
             Tugas.find({}, (err, tugas) => {
