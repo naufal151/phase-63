@@ -1,0 +1,123 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@font-face {
+    font-family: Retroica;
+    src: url("@@webRoot/assets/fonts/Retroica.ttf");
+}
+@font-face {
+    font-family: Century;
+    src: url("@@webRoot/assets/fonts/CENTURY.ttf");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+ul {
+    list-style: none;
+}
+
+
+/* Navigation Bar  Section */
+.navbar-horizontal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: #fbf3f2;
+    align-items: center;
+    font-family: Retroica;
+    font-size: 2vmin;
+}
+.nav-link {
+    display: flex;
+    align-items: center;
+}
+.nav-link li {
+    margin: 0 30px;
+}
+.nav-button {
+    color: #fbf3f2;
+    text-decoration: none;
+}
+.nav-button:hover {
+    color: orangered;
+    transition: 0.2s;
+}
+.nav-button-active {
+    color: orangered;
+}
+.nav-profile {
+    display: flex;
+    align-items: center;
+}
+.nav-profile li .nav-button{
+    margin: 0 10px;
+}
+.nav-profile li .nav-avatar{
+    margin: 0;
+}
+.logo h1 {
+    font-family: Retroica;
+    font-size: 3vmin;
+    color: #fbf3f2;
+}
+
+.avatar {
+    position: relative;
+    display: inline-block;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+}
+
+
+
+/* Header Section */
+header {
+    width: 100vw;
+    height: 100vh;
+    background-position: bottom;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.header-content {
+    margin-bottom: 150px;
+    color: #fbf3f2;
+    text-align: center;
+}
+.header-content h1 {
+    font-family: Retroica;
+    font-size: 7vmin;
+    margin-bottom: 15px;
+}
+.header-content h2{
+    font-family: Century;
+    font-size: 4vmin;
+}
+
+
+/* Content - Materi */
+.header-section {
+    background-position: bottom;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Retroica;
+    font-size: 3.5vmin;
+    color: #2e3830;
+    background-color: #ece1ce;
+}
+.header-section .header-content {
+    margin-top: 150px;
+    margin-bottom: 100px;
+}
+
