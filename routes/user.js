@@ -69,7 +69,7 @@ router.post('/register', (req, res) => {
 });
 
 router.post('/registerPanit', (req, res) => {
-    if (req.body.token === '123'){
+    if (req.body.token === process.env.TOKEN){
         res.render('registerPanit');
     }
     else {
