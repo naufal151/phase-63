@@ -1,0 +1,20 @@
+<%- include('partials/header') %>
+
+<h1>Profil Maba</h1>
+<form action="/profile" method="POST">
+    <label for="">Nama: </label>
+    <input type="text" name="nama" id=""><br>
+    <label for="">NPM: </label>
+    <input type="text" name="npm" id=""><br>
+    <label for="">Kelompok: </label>
+    <select name="kelompok" id="">
+        <option value="">--Pilih Kelompok--</option>
+        <option value="einstein">Einstein</option>
+        <option value="newton">Newton</option>
+        <option value="hooke">Hooke</option>
+    </select>
+    <br>
+    <button type="submit">Register</button>
+</form>
+
+<%- include('partials/header') %>

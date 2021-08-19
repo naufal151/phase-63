@@ -21,6 +21,10 @@ router.get('/register', (req, res) => {
     res.render('register', {message: req.flash('message')});
 });
 
+router.get('/registerPanit', (req, res) => {
+    res.render('tokenCheck');
+});
+
 // route untuk menampilkan halaman dashboard untuk maba
 router.get('/dashMaba', (req, res) => {
     if (req.isAuthenticated()){
@@ -31,7 +35,7 @@ router.get('/dashMaba', (req, res) => {
                 }
                 else {
                     if (tugas){
-                        res.render('upload', {tugas: tugas, message: req.flash('message')}); //ganti file yang akan dirender dengan nama file yang sesuai
+                        res.render('dashMaba', {tugas: tugas}); //ganti file yang akan dirender dengan nama file yang sesuai
                     }
                     else {
                         req.flash('message', 'Tidak ada tugas!');
@@ -59,7 +63,7 @@ router.get('/dashPanit', (req, res) => {
                 }
                 else {
                     if (maba){
-                        res.render('files', {maba: maba, message: req.flash('message')}); //ganti file yang akan dirender dengan nama file yang sesuai
+                        res.render('dashPanit', {maba: maba, role: role, kelompok: role.split('_')[1], uname: req.user.username}); //ganti file yang akan dirender dengan nama file yang sesuai
                     }
                     else {
                         req.flash('message', 'Tidak ada user!');
@@ -74,7 +78,7 @@ router.get('/dashPanit', (req, res) => {
                 }
                 else {
                     if (maba){
-                        res.render('files', {maba: maba, message: req.flash('message')});
+                        res.render('dashPanit', {maba: maba, role: role, uname: req.user.username});
                     }
                     else {
                         req.flash('message', 'Tidak ada user!');

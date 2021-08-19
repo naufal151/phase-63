@@ -9,18 +9,21 @@ const MyObjectId = mongoose.Schema.Types.ObjectId;
 const mabaSchema = new mongoose.Schema({
     user: { 
         type: MyObjectId, 
-        ref: 'User' 
+        ref: 'User'
     },
     nama: String,
     npm: Number,
     kelompok: String,
-    file: {
+    email: String,
+    ig: String,
+    alamat: String,
+    file: [{
         data: Buffer,
         contentType: String,
         date: String,
         time: String,
         status: String
-    }
+    }]
 });
 
 mabaSchema.plugin(passportLocalMongoose);
