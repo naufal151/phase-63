@@ -51,7 +51,9 @@ router.get('/dashMaba', (req, res) => {
                 }
                 else {
                     if (tugas){
-                        res.render('dashMaba', {tugas: tugas}); //ganti file yang akan dirender dengan nama file yang sesuai
+                        Maba.findOne({user: req.user.id}, (err, maba) => {
+                            res.render('dashMaba', {tugas: tugas, maba: maba});
+                        });
                     }
                     else {
                         req.flash('message', 'Tidak ada tugas!');
@@ -68,10 +70,18 @@ router.get('/dashMaba', (req, res) => {
     }
 });
 
+router.get('/tes', (req, res) => {
+    if (req.isAuthenticated()){
+        Maba.findOne({user: req.user.id}, (err, maba) => {
+            res.send(maba.file[1].status);
+        });
+    }
+});
+
 // route untuk menampilkan halaman dashboard untuk panitia
 router.get('/dashPanit', (req, res) => {
-    const role = req.user.role
     if (req.isAuthenticated()){
+        const role = req.user.role
         if (role.split('_')[0] === 'asesor'){
             Maba.find({'kelompok': role.split('_')[1]}, (err, maba) => {
                 Tugas.find({}, (err, tugas) => {
