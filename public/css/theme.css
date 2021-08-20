@@ -16595,9 +16595,7 @@ textarea.form-control-lg {
 
 #page-content {
   min-height: 100vh;
-  min-width: 100vw;
-  margin-left: 15.625rem;
-  transition: margin 0.25s ease-out; }
+  min-width: 100vw; }
 
 #db-wrapper.toggled .navbar-vertical {
   margin-left: 0; }
@@ -17482,3 +17480,8 @@ pre[class*="language-"].line-numbers {
   display: flex;
   align-items: center;
   justify-content: space-between; }
+
+.announcement{
+  text-align: center;
+  padding: 10px 10px;
+}
