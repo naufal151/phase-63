@@ -11,14 +11,18 @@
             <th>deskripsi tugas</th>
             <th>deadline</th>
         </tr>
-        <% tugas.forEach((tugasMaba) => { %>
+        <% tugas.forEach((tugasMaba, index) => { %>
             <tr>
                 <td><%= tugasMaba.judul %></td>
                 <td><%= tugasMaba.deskripsi %></td>
-                <td><%= tugasMaba.deadline %></td>
+                <td><%= tugasMaba.deadline.toDateString() %></td>
+                <% if (maba.file.length !== 0){ %>
+                    <td><%= maba.file[index].status %></td>
+                <% } else { %>
+                    <td>belum ada tugas</td>
+                <% } %>
             </tr>
         <% }) %>
-        
     </table> 
 <% } else { %>
     <h1>Tidak ada tugas</h1>
