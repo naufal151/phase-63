@@ -1,11 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 @font-face {
     font-family: Retroica;
-    src: url("@@webRoot/assets/fonts/Retroica.ttf");
+    src: url("/public/fonts/Retroica/RETROICA.TTF");
 }
 @font-face {
     font-family: Century;
-    src: url("@@webRoot/assets/fonts/CENTURY.ttf");
+    src: url("/public/fonts/Century/CENTURY.TTF");
 }
 
 * {
