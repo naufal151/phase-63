@@ -1,0 +1,20 @@
+<%- include('partials/header') %>
+
+<h1>Register Panitia</h1>
+<form action="/registerPanit/reg" method="POST">
+    <label for="">Username: </label>
+    <input type="text" name="username" id=""><br>
+    <label for="">Password</label>
+    <input type="text" name="password" id=""><br>
+    <label for="">Role: </label>
+    <select name="role" id="">
+        <option value="">--Pilih Role--</option>
+        <option value="pengembangan">Pengembangan</option>
+        <option value="asesor_newton">Asesor Newton</option>
+        <option value="asesor_hooke">Asesor Hooke</option>
+        <option value="asesor_einstein">Asesor Einstein</option>
+    </select>
+    <button type="submit">Register</button>
+</form>
+
+<%- include('partials/header') %>

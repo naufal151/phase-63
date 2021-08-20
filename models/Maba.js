@@ -2,24 +2,28 @@
 
 const mongoose = require('mongoose');
 const passportLocalMongoose = require('passport-local-mongoose');
+const User = require('./User');
 
-const MyObjectId = mongoose.Types.ObjectId;
+const MyObjectId = mongoose.Schema.Types.ObjectId;
 
 const mabaSchema = new mongoose.Schema({
     user: { 
         type: MyObjectId, 
-        ref: 'User' 
+        ref: 'User'
     },
     nama: String,
     npm: Number,
     kelompok: String,
-    file: {
+    email: String,
+    ig: String,
+    alamat: String,
+    file: [{
         data: Buffer,
         contentType: String,
         date: String,
         time: String,
         status: String
-    }
+    }]
 });
 
 mabaSchema.plugin(passportLocalMongoose);

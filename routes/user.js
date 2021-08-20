@@ -7,7 +7,7 @@ const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
 const User = require('../models/User');
-const Tugas = require('..models/Tugas');
+const Tugas = require('../models/Tugas');
 const Maba = require('../models/Maba');
 
 // route untuk login
@@ -25,13 +25,18 @@ router.post('/login', (req, res) => {
         }
         else {
             passport.authenticate('local', { failureRedirect: '/login', failureFlash: req.flash('message', 'Username atau Password salah! Coba ulangi lagi.')})(req, res, () => {
-                res.redirect('/');
+                if (req.user.role === 'maba'){
+                    res.redirect('/dashMaba');
+                }
+                else {
+                    res.redirect('/dashPanit');
+                }
             });
         }
     });
 });
 
-// route untuk register
+// route untuk register maba
 router.post('/register', (req, res) => {
     const username = req.body.username;
 
@@ -51,12 +56,68 @@ router.post('/register', (req, res) => {
                     }
                     else {
                         passport.authenticate('local', { failureRedirect: '/register' })(req, res, () => {
-                            res.redirect('/');
+                            user.role = 'maba';
+                            user.save(() => {
+                                res.render('profile');
+                            });
                         });
                     }
                 });
             }
         }
+    });
+});
+
+router.post('/registerPanit', (req, res) => {
+    if (req.body.token === process.env.TOKEN){
+        res.render('registerPanit');
+    }
+    else {
+        req.flash('message', 'Token yang anda masukan salah.');
+        res.redirect('/registerPanit');
+    }
+});
+
+router.post('/registerPanit/reg', (req, res) => {
+    User.findOne({'username': req.body.username}, (err, user) => {
+        if (err){
+            console.log(err);
+        }
+        else {
+            if (user){
+                req.flash('message', 'Username sudah digunakan! Coba username lain.');
+                res.redirect('/registerPanit');
+            }
+            else {
+                User.register({username: req.body.username}, req.body.password, (err, user) => {
+                    if (err){
+                        res.redirect('/registerPanit');
+                    }
+                    else {
+                        passport.authenticate('local', {failureRedirect: '/registerPanit'})(req, res, () => {
+                            user.role = req.body.role;
+                            user.save(() => {
+                                res.redirect('/dashPanit');
+                            });
+                        });
+                    }
+                });
+            }
+        }
+    });
+});
+
+// route untuk profile nama, kelompok, npm
+router.post('/profile', (req, res) => {
+    const userProfile = new Maba({
+        user: req.user.id,
+        nama: req.body.nama,
+        npm: req.body.npm,
+        kelompok: req.body.kelompok
+    });
+
+    userProfile.save(() => {
+        res.redirect('/dashMaba');
     });
 });
 
@@ -72,7 +133,16 @@ const storage = multer.diskStorage({
         cb(null, 'routes/uploads');
     },
     filename: (req, file, cb) => {
-        cb(null, req.user.username + '@' + new Date().getDate() + '-' + (new Date().getMonth()+1) + '-' + new Date().getFullYear() + '@' + new Date().getHours() + ':' + new Date().getMinutes() + ':' + new Date().getSeconds() + path.extname(file.originalname));
+        Maba.findOne({user: req.user.id}, (err, maba) => {
+            if (err){
+                console.log(err);
+            }
+            else {
+                if (maba){
+                    cb(null, maba.npm + '@' + new Date().getFullYear() + '-' + (new Date().getMonth()+1) + '-' + new Date().getDate() + path.extname(file.originalname));
+                }
+            }
+        });
     }
 });
 
@@ -92,16 +162,22 @@ router.post('/mabaUpload', upload.single('file'), (req, res, next) => {
             }
             else {
                 if (user){
-                    user.file.data = data;
-                    user.file.contentType = contentType;
-                    user.file.date = new Date().getDate() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getFullYear();
-                    user.file.time = new Date().getHours() + ':' + new Date().getMinutes() + ':' + new Date().getSeconds();
+                    const file = {
+                        data: data,
+                        contentType: contentType,
+                        date: new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate(),
+                        time: new Date().getHours() + ':' + new Date().getMinutes() + ':' + new Date().getSeconds(),
+                        status: ''
+                    }
+
+                    user.file.push(file);
                     user.save(() => {
-                        res.redirect('/taskUpload');
+                        res.redirect('/dashMaba');
                     });
                 }
                 else {
-                    res.send('user tidak ditemukan');
+                    req.flash('message', 'Gagal upload tugas!');
+                    res.redirect('/dashMaba');
                 }
             }
         });
@@ -120,34 +196,21 @@ router.post('/panitUpload', (req, res) => {
     const role = req.user.role;
 
     if (role === 'pengembangan' || role.split('_')[0] === 'asesor'){
-        Tugas.findOne({'user': req.user.id}, (err, tugas) => {
-            if (err){
-                console.log(err);
-            }
-            else {
-                if (tugas){
-                    tugas.judul = judul;
-                    tugas.deskripsi = deskripsi;
-                    tugas.deadline = deadline;
-    
-                    tugas.save(() => {
-                        res.redirect('/');
-                    });
-                }
-                else {
-                    req.flash('message', 'Tidak dapat mengupload tugas!');
-                    res.redirect('/');
-                }
-            }
+        const tugas = new Tugas({
+            judul: judul,
+            deskripsi: deskripsi,
+            deadline: deadline,
+            dari: role
         });
-    }
-    else {
-        res.redirect('/');
+
+        tugas.save(() => {
+            res.redirect('/dashPanit');
+        });
     }
 });
 
 // route untuk memberikan status tugas untuk maba
-router.post('/statusTugas/:mabaId', (req, res) => {
+router.post('/statusTugas/:mabaId/:fileIndex', (req, res) => {
     const status = req.body.status;
 
     if (req.user.role === 'pengembangan' || req.user.role.split('_')[0] === 'asesor'){
@@ -157,7 +220,7 @@ router.post('/statusTugas/:mabaId', (req, res) => {
             }
             else {
                 if (maba){
-                    maba.file.status = status;
+                    maba.file[req.params['fileIndex']].status = status;
                     maba.save(() => {
                         res.redirect('/dashPanit');
                     });
@@ -170,15 +233,17 @@ router.post('/statusTugas/:mabaId', (req, res) => {
     }
 });
 
-// route untuk profil maba
-router.post('/profil', (req, res) => {
-    const nama = req.body.nama;
-    const npm = req.body.npm;
+// route untuk ganti profil maba
+router.post('/profileChange', (req, res) => {
+    const email = req.body.email;
+    const ig = req.body.ig;
+    const alamat = req.body.alamat;
 
     if (req.user.role === 'maba'){
         Maba.findOne({'user': req.user.id}, (err, maba) => {
-            maba.nama = nama;
-            maba.npm = npm;
+            maba.email = email;
+            maba.ig = ig;
+            maba.alamat = alamat;
 
             maba.save(() => {
                 res.redirect('/dashMaba');
