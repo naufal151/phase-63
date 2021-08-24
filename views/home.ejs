@@ -1,28 +1,65 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        
-        <title>WELCOME</title>
 
-        <!-- CSS File -->
-        <link rel="stylesheet" href="css/mahasiswa.css">
-    </head>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <body>
-        <%- include('partials/navbar') %>
-        <header>
-            <style>
-            header {background-image: url('img/ex1.jpg');}
-            </style>
-            
-            <div class="header-content">
-                <h1>PHASE 63</h1>
-                <div class="borderline"></div>
-                <h2>tagline</h2>
-            </div>
-        </header>
+    <title>WELCOME</title>
+
+    <!-- CSS File -->
+    <link rel="stylesheet" href="css/mahasiswa.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.7/tailwind.min.css"
+        integrity="sha512-y6ZMKFUQrn+UUEVoqYe8ApScqbjuhjqzTuwUMEGMDuhS2niI8KA3vhH2LenreqJXQS+iIXVTRL2iaNfJbDNA1Q=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+</head>
+
+<body>
+    <nav class="navbar-horizontal">
+        <a class="logo">
+            <h1>PHASE 63</h1>
+        </a>
+
+        <ul class="nav-link">
+            <li><a class="nav-button" href="/home">Home</a></li>
+            <li><a class="nav-button" href="/materi">Materi</a></li>
+            <li><a class="nav-button" href="/tugas">Tugas</a></li>
+            <li><a class="nav-button" href="#">Pertemuan</a></li>
+            <li><a class="nav-button" href="#">Profil</a></li>
+        </ul>
+
+        <ul class="nav-profile">
+            <li><a class="nav-avatar" href="#"><img src="img/ava/C.jpg" class="avatar" alt="Profile"/></a></li>
+        </ul>
         
-    </body>
+        <div class="menu-toggle">
+            <input type="checkbox">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <script>
+        const menuToggle = document.querySelector('.menu-toogle input');
+        const navLink = document.querySelector('.nav-link');
+
+        menuToggle.addEventListener('click', ()=> {
+            navLink.classList.toogle('slide');
+        })
+    </script>
+
+
+    <div class="header" style="background-image: url(/public/img/bgphase1abs.svg);">
+        <div class="header-content">
+            <h1>PHASE 63</h1>
+            <div class="borderline"></div>
+            <h2>tagline</h2>
+        </div>
+    </div>
+
+</body>
+
 </html>

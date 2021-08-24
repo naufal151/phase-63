@@ -30,7 +30,7 @@ router.get('/home', (req, res) => {
 });
 
 router.get('/registerPanit', (req, res) => {
-    res.render('tokenCheck');
+    res.render('registerPanit');
 });
 
 router.get('/tugas', (req, res) => {
@@ -52,7 +52,7 @@ router.get('/dashMaba', (req, res) => {
                 else {
                     if (tugas){
                         Maba.findOne({user: req.user.id}, (err, maba) => {
-                            res.render('dashMaba', {tugas: tugas, maba: maba});
+                            res.render('home', {tugas: tugas, maba: maba});
                         });
                     }
                     else {
