@@ -1,0 +1,53 @@
+<%- include('partials/header') %>
+
+<% if (role !== 'pengembangan'){ %>
+    <h1>Tabel Kelompok <%= kelompok %></h1>
+<% } else { %>
+    <h1>Tabel tugas maba</h1>
+<% } %>
+
+<% if (maba.length !== 0){ %>
+    <table>
+        <tr>
+            <th>Nama</th>
+            <th>NPM</th>
+            <th>Tugas</th>
+        </tr>
+        <% maba.forEach((mabas) => { %>
+            <tr>
+                <td><%= mabas.nama %></td>
+                <td><%= mabas.npm %></td>
+                <% mabas.file.forEach((tugasMaba, index) => { %>
+                    <td><a href="/dashPanit/<%= mabas.npm %>@<%= tugasMaba.date %>.pdf" target="_blank">Lihat tugas</a></td>
+                    <td>
+                        <form action="/statusTugas/<%= mabas.user %>/<%= index %>" method="post">
+                            <select name="status" id="">
+                                <option value="belom_beres">Belum beres</option>
+                                <option value="beres">Beres</option>
+                            </select>
+                            <button type="submit">Submit</button>
+                        </form>
+                    </td>
+                    
+                <% }) %>
+            </tr>
+        <% }) %>
+    </table>
+<% } else { %>
+    <h1>Tidak ada tugas maba</h1>
+<% } %>
+
+<br><br>
+
+<h1>Upload Tugas</h1>
+<form action="/panitUpload" method="POST">
+    <label for="">Judul: </label>
+    <input type="text" name="judul" id=""><br>
+    <label for="">Deskripsi: </label>
+    <textarea name="deskripsi" id="" cols="30" rows="10" placeholder="Deskripsi Tugas"></textarea><br>
+    <label for="">Deadline tugas</label>
+    <input type="date" name="deadline" id=""><br>
+    <button type="submit">Kirim tugas</button>
+</form>
+
+<%- include('partials/footer') %>

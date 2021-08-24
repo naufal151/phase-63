@@ -1,0 +1,40 @@
+<%- include('partials/header') %>
+
+<h1>Jumlah tugas</h1>
+<p><%= tugas.length %></p>
+
+<h1>Dashboard Maba</h1>
+<% if (tugas.length !== 0) { %>
+    <table>
+        <tr>
+            <th>judul tugas</th>
+            <th>deskripsi tugas</th>
+            <th>deadline</th>
+        </tr>
+        <% tugas.forEach((tugasMaba, index) => { %>
+            <tr>
+                <td><%= tugasMaba.judul %></td>
+                <td><%= tugasMaba.deskripsi %></td>
+                <td><%= tugasMaba.deadline.toDateString() %></td>
+                <% if (maba.file.length !== 0){ %>
+                    <td><%= maba.file[index].status %></td>
+                <% } else { %>
+                    <td>belum ada tugas</td>
+                <% } %>
+            </tr>
+        <% }) %>
+    </table> 
+<% } else { %>
+    <h1>Tidak ada tugas</h1>
+<% } %>
+
+<br>
+
+<h3>Upload tugas</h3>
+<form action="/mabaUpload" method="POST" enctype="multipart/form-data">
+    <label for="">Pilih file untuk diupload</label>
+    <input type="file" name="file"><br>
+    <button type="submit">Kirim</button>
+</form>
+
+<%- include('partials/footer') %>
