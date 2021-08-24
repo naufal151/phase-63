@@ -23,7 +23,7 @@
         </a>
 
         <ul class="nav-link">
-            <li><a class="nav-button" href="/home">Home</a></li>
+            <li><a class="nav-button active" href="#">Home</a></li>
             <li><a class="nav-button" href="/materi">Materi</a></li>
             <li><a class="nav-button" href="/tugas">Tugas</a></li>
             <li><a class="nav-button" href="#">Pertemuan</a></li>
@@ -42,15 +42,7 @@
         </div>
     </nav>
 
-    <script>
-        const menuToggle = document.querySelector('.menu-toogle input');
-        const navLink = document.querySelector('.nav-link');
-
-        menuToggle.addEventListener('click', ()=> {
-            navLink.classList.toogle('slide');
-        })
-    </script>
-
+    <script src="/public/js/hamburger.js"></script>
 
     <div class="header" style="background-image: url(/public/img/bgphase1abs.svg);">
         <div class="header-content">

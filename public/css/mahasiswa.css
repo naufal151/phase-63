@@ -65,6 +65,9 @@ body {
 .nav-profile li .nav-avatar{
     margin: 0;
 }
+.logo {
+    z-index: 2;
+}
 .logo h1 {
     font-family: Retroica;
     font-size: 2.5vmin;
@@ -78,6 +81,7 @@ body {
         height: 1rem;
         justify-content: space-between;
         position: relative;
+        z-index: 2;
     }
     .nav-profile {
         display: none;
@@ -92,10 +96,10 @@ body {
         background: darkblue;
         align-items: center;
         justify-content: center;
-        z-index: -1;
+        z-index: 1;
         border-bottom-left-radius: 150px;
         transform: translateX(100%);
-        transition: all 1s;
+        transition: all 0.65s;
     }
     .slide {
         opacity: 1;
@@ -104,8 +108,8 @@ body {
     .nav-link li {
         margin: 25px auto;
     }
-    a {
-        font-size: 4.5vmin;
+    .navbar-horizontal a {
+        font-size: 4vmin;
     }
     .logo h1 {
         font-family: Retroica;
@@ -213,4 +217,3 @@ body {
     margin-top: 150px;
     margin-bottom: 100px;
 }
-
