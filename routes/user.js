@@ -149,7 +149,7 @@ const storage = multer.diskStorage({
 const upload = multer({storage: storage});
 
 // route untuk upload tugas maba
-router.post('/mabaUpload', upload.single('file'), (req, res, next) => {
+router.post('/mabaUpload/:tugasId', upload.single('file'), (req, res, next) => {
     const role = req.user.role;
 
     if (role === 'maba'){
@@ -163,11 +163,12 @@ router.post('/mabaUpload', upload.single('file'), (req, res, next) => {
             else {
                 if (user){
                     const file = {
+                        tugas: req.params['tugasId'],
                         data: data,
                         contentType: contentType,
                         date: new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate(),
                         time: new Date().getHours() + ':' + new Date().getMinutes() + ':' + new Date().getSeconds(),
-                        status: ''
+                        status: 'diperiksa'
                     }
 
                     user.file.push(file);
