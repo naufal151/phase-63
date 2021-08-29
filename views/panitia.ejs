@@ -142,13 +142,39 @@
                                 <div class="card-header project-header bg-white border-bottom-0 py-4">
                                     <h4 class="mb-0">Active Projects</h4>
                                     <div>
-                                        <button type="button" class="add-project" id="add-project">Add New
-                                            Project</button>
+                                        <button type="button" class="add-project" id="add-project" onclick="formPopup()">Add New Project</button>
                                     </div>
                                 </div>
+                                <div class="popup-position">
+                                    <span class="popup-content" id="popup-addproject">
+                                        <form class="addproject-form" method="POST">
+                                            <a class="close-popup" onclick="formClose()"><i class="bi bi-x-square"></i></a>
+    
+                                            <label for="judul">Project Name :</label>
+                                            <input class="title form-data" type="text" name="judul" placeholder="Project Title" autocomplete="off" required><br>
+                                            
+                                            <div class="splitted">
+                                                <label for="project-type">Project Type :</label><br>
+                                                <select name="project-type" class="type form-data" autocomplete="off" required>
+                                                    <option value="">--Select Type--</option>
+                                                    <option value="assessment">Assessment</option>
+                                                    <option value="quiz">Quiz</option>
+                                                </select><br>
+        
+                                                <label for="deadline">Project Deadline : </label><br>
+                                                <input class="date form-data" type="datetime-local" name="deadline" placeholder="Project Deadline" autocomplete="off" required><br>
+                                            </div>
+                                            
+                                            <label for="deskripsi">Project Description :</label><br>
+                                            <textarea class="description form-data" name="deskripsi" placeholder="Project Description" autocomplete="off" required></textarea><br>
+    
+                                            <button class="submit-form button-data" type="submit" name="project-add-button">Add Project!</button>
+                                        </form>
+                                    </span>
+                                </div>
+
+
                                 <!-- table  -->
-                                <% if (tugas.length !==0) { %>
-                                    <% tugas.forEach((tugasMaba)=> { %>
                                         <div class="table-responsive">
                                             <table class="table text-nowrap mb-0 table-project">
                                                 <thead class="table-light table-head">
@@ -160,6 +186,8 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody class="table-body">
+                                                    <% if (tugas.length !==0) { %>
+                                                        <% tugas.forEach((tugasMaba)=> { %>
                                                     <tr>
                                                         <td class="align-middle">
                                                             <div class="d-flex align-items-center">
@@ -187,29 +215,27 @@
                                                             <a href="/" class="text-inherit">Open tab</a>
                                                         </td>
                                                     </tr>
-                                                    <% }) %>
                                                 </tbody>
-                                            </table>
+                                                <% }) %>
                                             <% } else { %>
                                                 <h3 class="announcement">There is no active project yet.</h3>
                                                 <% } %>
+                                            </table>
                                         </div>
                             </div>
 
                         </div>
                         <!-- row  -->
-                        <div class="row my-6">
+                        <div class="row mt-6">
 
                             <!-- card  -->
-                            <div class="col-xl-12 col-lg-12">
+                            <div class="col-md-12 col-12">
                                 <div class="card h-100">
                                     <!-- card header  -->
                                     <div class="card-header bg-white border-bottom-0 py-4">
                                         <h4 class="mb-0">Teams </h4>
                                     </div>
                                     <!-- table  -->
-                                    <% if (maba.length !==0) { %>
-                                        <% maba.forEach((mabas)=> { %>
                                             <div class="table-responsive">
                                                 <table class="table text-nowrap">
                                                     <thead class="table-light">
@@ -221,6 +247,8 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                        <% if (maba.length !==0) { %>
+                                                            <% maba.forEach((mabas)=> { %>
                                                         <tr>
                                                             <td class="align-middle">
                                                                 <div class="d-flex align-items-center">
@@ -244,10 +272,10 @@
                                                             <td class="align-middle">3 May, 2021</td>
                                                         </tr>
                                                         <% }) %>
+                                                        <% } else { %>
+                                                            <h3 class="announcement">You don't have a team yet.</h3>
+                                                            <% } %>
                                                     </tbody>
-                                                    <% } else { %>
-                                                        <h3 class="announcement">You don't have a team yet.</h3>
-                                                        <% } %>
                                                 </table>
                                             </div>
                                 </div>
@@ -260,17 +288,18 @@
     </div>
 
     <!-- Scripts -->
-    <!-- <script src="js/add-table.js"></script> -->
     <%- include('partials/scripts') %>
 
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $("#add-project").click(function () {
-                    var addcontents = "<tr>"
-                });
-            });
-        </script>
-
+    <script>
+        function formPopup() {
+            var popup = document.getElementById("popup-addproject");
+            popup.classList.toggle("show");
+        }
+        function formClose() {
+            var popup = document.getElementById("popup-addproject");
+            popup.classList.remove("show");
+        }
+    </script>
 
 </body>
 
