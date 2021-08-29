@@ -13,7 +13,8 @@ const tugasSchema = new mongoose.Schema({
     },
     judul: String,
     deskripsi: String,
-    deadline: Date
+    deadline: Date,
+    jenis: String
 });
 
 tugasSchema.plugin(passportLocalMongoose);

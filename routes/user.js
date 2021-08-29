@@ -192,6 +192,7 @@ router.post('/panitUpload', (req, res) => {
     const judul = req.body.judul;
     const deskripsi = req.body.deskripsi;
     const deadline = req.body.deadline;
+    const jenis = req.body.jenis;
 
     const role = req.user.role;
 

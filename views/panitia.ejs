@@ -93,7 +93,7 @@
                                     <div class="d-flex justify-content-between align-items-center
                     mb-3">
                                         <div>
-                                            <h4 class="mb-0">Kelompok</h4>
+                                            <h4 class="mb-0">Tugas</h4>
                                         </div>
                                         <div class="icon-shape icon-md bg-light-primary text-primary rounded-1">
                                             <i class="bi bi-briefcase fs-4"></i>
@@ -147,7 +147,7 @@
                                 </div>
                                 <div class="popup-position">
                                     <span class="popup-content" id="popup-addproject">
-                                        <form class="addproject-form" method="POST">
+                                        <form class="addproject-form" action="/panitUpload" method="POST">
                                             <a class="close-popup" onclick="formClose()"><i class="bi bi-x-square"></i></a>
     
                                             <label for="judul">Project Name :</label>
@@ -155,10 +155,10 @@
                                             
                                             <div class="splitted">
                                                 <label for="project-type">Project Type :</label><br>
-                                                <select name="project-type" class="type form-data" autocomplete="off" required>
+                                                <select name="jenis" class="type form-data" autocomplete="off" required>
                                                     <option value="">--Select Type--</option>
-                                                    <option value="assessment">Assessment</option>
-                                                    <option value="quiz">Quiz</option>
+                                                    <option value="Tugas">Assessment</option>
+                                                    <option value="Quiz">Quiz</option>
                                                 </select><br>
         
                                                 <label for="deadline">Project Deadline : </label><br>
@@ -180,7 +180,7 @@
                                                 <thead class="table-light table-head">
                                                     <tr class="table-row">
                                                         <th class="middle-align">Judul</th>
-                                                        <th class="middle-align">Minggu ke-</th>
+                                                        <th class="middle-align">Jenis</th>
                                                         <th class="middle-align">Deadline</th>
                                                         <th class="middle-align">Rincian</th>
                                                     </tr>
@@ -205,7 +205,7 @@
                                                                 </div>
                                                             </div>
                                                         </td>
-                                                        <td class="align-middle middle-align">1</td>
+                                                        <td class="align-middle middle-align"><%= tugasMaba.jenis %></td>
                                                         <td class="align-middle middle-align"><span
                                                                 class="badge bg-danger">
                                                                 <%= tugasMaba.deadline %>
