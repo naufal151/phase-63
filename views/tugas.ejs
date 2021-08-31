@@ -19,30 +19,7 @@
 </head>
 
 <body>
-    <nav class="navbar-horizontal">
-        <a class="logo">
-            <h1>PHASE 63</h1>
-        </a>
-
-        <ul class="nav-link">
-            <li><a class="nav-button" href="/home">Home</a></li>
-            <li><a class="nav-button" href="/materi">Materi</a></li>
-            <li><a class="nav-button active" href="#">Tugas</a></li>
-            <li><a class="nav-button" href="#">Pertemuan</a></li>
-            <li><a class="nav-button" href="/user">Profil</a></li>
-        </ul>
-
-        <ul class="nav-profile">
-            <li><a class="nav-avatar" href="/user"><img src="img/ava/C.jpg" class="avatar" alt="Profile" /></a></li>
-        </ul>
-
-        <div class="menu-toggle">
-            <input type="checkbox">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </nav>
+    <%- include('partials/navbar') %>
 
     <script src="/public/js/hamburger.js"></script>
 
