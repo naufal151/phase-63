@@ -41,6 +41,10 @@ router.get('/materi', (req, res) => {
     res.render('materi', {message: req.flash('message')});
 });
 
+router.get('/materi/civitas', (req, res) => {
+    res.render('materi/materi_1', {message: req.flash('message')});
+});
+
 router.get('/user', (req, res) => {
     res.render('user', {message: req.flash('message')});
 });
