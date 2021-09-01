@@ -46,8 +46,10 @@ body {
     margin: 0 30px;
 }
 .nav-button {
+    display: flex;
     color: #fbf3f2;
     text-decoration: none;
+    align-items: center;
 }
 .nav-button:hover {
     color: #ef4444;
