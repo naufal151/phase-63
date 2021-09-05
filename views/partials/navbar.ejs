@@ -1,0 +1,32 @@
+<nav class="navbar-horizontal">
+    <a class="logo">
+        <h1>PHASE 63</h1>
+    </a>
+
+    <ul class="nav-link">
+        <li><a class="nav-button" href="https://phasehifi.com/home">Home</a></li>
+        <li><a class="nav-button" href="https://phasehifi.com/materi">Materi</a></li>
+        <li><a class="nav-button" href="https://phasehifi.com/tugas">Tugas</a></li>
+        <li><a class="nav-button" href="#">Pertemuan</a></li>
+        <!-- <li><a class="nav-button" href="https://phasehifi.com/user">Profil</a></li> -->
+    </ul>
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script>
+        $(function () {
+            $('nav li a').filter(function () {
+                return this.href === location.href;
+            }).addClass('active');
+        });
+    </script>
+        <!-- <li><a class="nav-avatar" href="https://phasehifi.com/user"><img src="img/ava/C.jpg" class="avatar" alt="Profile" /></a></li> -->
+    </ul>
+
+    <div class="menu-toggle">
+        <input type="checkbox">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    
+</nav>

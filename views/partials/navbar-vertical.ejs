@@ -1,0 +1,81 @@
+<!-- Sidebar -->
+<nav class="navbar-vertical navbar">
+    <div class="nav-scroller" style="overflow: hidden; width: auto; height: 90%;">
+        <!-- Brand logo -->
+        <a class="navbar-brand" href="/">
+            <img src="images/brand/logo/logo.svg" alt="" />
+        </a>
+        <!-- Navbar nav -->
+        <ul class="navbar-nav flex-column" id="sideNavbar">
+            <li class="nav-item">
+                <a class="nav-link has-arrow @@if (context.page ===  'dashboard') { active }"
+                    href="/">
+                    <i data-feather="home" class="nav-icon icon-xs me-2"></i> Panitia
+                </a>
+            </li>
+
+
+            <!-- Nav item -->
+            <li class="nav-item">
+                <div class="navbar-heading">Layouts & Pages</div>
+            </li>
+
+
+            <!-- Nav item -->
+            <li class="nav-item">
+                <a class="nav-link has-arrow @@if (context.page_group !== 'authentication') { collapsed }" href="#!"
+                    data-bs-toggle="collapse" data-bs-target="#navAuthentication" aria-expanded="false"
+                    aria-controls="navAuthentication">
+                    <i data-feather="layers" class="nav-icon icon-xs me-2">
+                    </i> Materi
+                </a>
+                <div id="navAuthentication" class="collapse @@if (context.page_group === 'authentication') { show }"
+                    data-bs-parent="#sideNavbar">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link @@if (context.page === 'signin') { active }"
+                                href="/"> Tugas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @@if (context.page === 'signup') { active } "
+                                href="/"> Tekanan</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @@if (context.page === 'forgetpassword') { active }"
+                                href="/">
+                                Jahim Merah
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link @@if (context.page === 'layouts') { active }" href="/">
+                    <i data-feather="sidebar" class="nav-icon icon-xs me-2">
+                    </i>
+                    Pertemuan
+                </a>
+            </li>
+
+            <!-- Nav item -->
+            <li class="nav-item">
+                <div class="navbar-heading">Profil</div>
+            </li>
+
+            <!-- Nav item -->
+            <li class="nav-item">
+                <a class="nav-link has-arrow @@if (context.page === 'docs') { active }"
+                    href="/">
+                    <i data-feather="clipboard" class="nav-icon icon-xs me-2">
+                    </i> Profil
+                </a>
+            </li>
+
+
+
+
+        </ul>
+
+    </div>
+</nav>

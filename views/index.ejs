@@ -3,9 +3,10 @@
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
 	<title>Phase 63</title>
 	<!-- connection FAVICONS-->
-	<!-- <link rel="icon" href="img/favicon/favicon.png"> -->
+	<link rel="icon" href="img/Logo_2.png">
 	<!-- THE BACKGROUND OF THE STATUS-BAR (ON MOBILE)-->
 	<meta name="theme-color" content="#000">
 
@@ -40,13 +41,13 @@
 
 	<% if(!loggedIn){ %>
 		<!-- PRELOADER -->
-		<div class="preloader-overlay js-preloader">
+		<!-- <div class="preloader-overlay js-preloader">
 			<canvas id="canvas"></canvas>
 			<div class="counter">
 				<h1>0%</h1>
 				<hr>
 			</div>
-		</div>
+		</div> -->
 		<!-- PRELOADER END -->
 	<% } %>
 
@@ -111,7 +112,7 @@
 						  </div>
 						  <br>
 
-						  <div style="text-align:center; opacity: 0;">
+						  <div style="text-align:center;">
 							<span class="dot" onclick="currentSlide(1)"></span> 
 							<span class="dot" onclick="currentSlide(2)"></span> 
 							<span class="dot" onclick="currentSlide(3)"></span> 
@@ -125,8 +126,10 @@
 									<h6 class="h6" style="font-weight: bold; font-size: 22px;">Makna</h6>
 								</div>
 								<div class="col-lg-8">
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce elit nisi, aliquet at consectetur nec, varius eget dolor. Donec interdum sem nec odio congue dictum. Donec eget augue justo. Proin bibendum varius mauris. In eget porta elit. Ut eu dui ac est consequat tincidunt sed et tortor. Mauris mollis sapien sem, ac viverra sapien facilisis nec. Pellentesque fermentum magna id pulvinar dictum. Proin bibendum ac tellus vel sagittis. Nulla aliquet ante sit amet auctor sagittis. Mauris dictum bibendum lectus, in lobortis turpis ultricies et. Nunc feugiat ante odio, ac lobortis dui tristique vel. Morbi id tortor posuere, interdum sem eu, mattis felis. Suspendisse posuere dolor eget ipsum faucibus imperdiet.</p>
-										<p>You can also download my <a class="page-about__content-link" href="resume/ALEXANDR-BUTSAIEV-RESUME.pdf">resume</a>.</div></p>
+										<p class="meaning">WARNA HIJAU yang bergradasi melambangi pertumbuhan yang akan dialami oleh peserta pada phase 63<br><br>UKURAN DAUN dari yang kecil hingga besar menandakan ketiga angkatan yang terlibat dalam phase 63<br><br>3 BUAH CABANG	 melambangkan tri dharma perguruan tinggi</p>
+										<p class="meaning">PHI yang merupakan simbol fisika sebagai simbol dari fase menandakan bahwa phase dilaksanakan oleh mahasiswa fisika UNPAD</p>
+										<p class="meaning">DAUN melambangkan kenyamanan dan kebersamaan antara peserta phase 63</p>
+								</div>
 							</div>
 					</div>
 				</div>
@@ -137,15 +140,15 @@
 		<!--LOGIN-->
 		<div class="page" id="page-login">
 			<div class="login">
-				<h2 class="h2" style="margin: auto;"><img src="img/Logo_1.png" width="550" height="550"></h2>
-				<form class="login-form" action="/login" method="POST">
+				<h2 class="h2" style="margin: auto;"><img src="img/Logo_2.png" width="200" height="200" id="login-logo"></h2>
+				<form class="login-form" id="login-form" action="/login" method="POST">
     				<input type="text" name="username" placeholder="Username"><br>
     				<input type="password" name="password" placeholder="Password" autocomplete="off"><br>
     				<button type="submit" class="link link--page" id="login-button">Login</button>
 				</form>
 			</div>
 		</div>
-		<!--PORTFOLIO END-->
+		<!--LOGIN END-->
 	</div>
 	<!-- PAGES STACK END-->
 

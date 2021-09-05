@@ -19,9 +19,9 @@ router.post('/login', (req, res) => {
 
     req.login(user, (err) => {
         if (err) {
+            res.redirect('/login');
             console.log(err);
             req.flash('message', 'Username atau Password salah! Coba ulangi lagi.');
-            res.redirect('/login');
         }
         else {
             passport.authenticate('local', { failureRedirect: '/login', failureFlash: req.flash('message', 'Username atau Password salah! Coba ulangi lagi.')})(req, res, () => {
@@ -69,7 +69,7 @@ router.post('/register', (req, res) => {
 });
 
 router.post('/registerPanit', (req, res) => {
-    if (req.body.token === process.env.TOKEN){
+    if (req.body.token === 27017){
         res.render('registerPanit');
     }
     else {
@@ -193,6 +193,7 @@ router.post('/panitUpload', (req, res) => {
     const judul = req.body.judul;
     const deskripsi = req.body.deskripsi;
     const deadline = req.body.deadline;
+    const jenis = req.body.jenis;
 
     const role = req.user.role;
 

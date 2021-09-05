@@ -49,7 +49,7 @@ app.use('/', routes);
 app.use('/', userRoute);
 
 // listen to port
-const port = process.env.PORT || 8000
+const port = 8000
 app.listen(port, () => {
     console.log(`Server started on ${port}`);
 });
