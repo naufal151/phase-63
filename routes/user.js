@@ -69,8 +69,8 @@ router.post('/register', (req, res) => {
 });
 
 router.post('/registerPanit', (req, res) => {
-    if (req.body.token === 27017){
-        res.render('registerPanit');
+    if (req.body.token === process.env.TOKEN){
+        res.render('tokenCheck');
     }
     else {
         req.flash('message', 'Token yang anda masukan salah.');
@@ -195,20 +195,22 @@ router.post('/panitUpload', (req, res) => {
     const deadline = req.body.deadline;
     const jenis = req.body.jenis;
 
-    const role = req.user.role;
+    const tugas = new Tugas({
+        judul: judul,
+        deskripsi: deskripsi,
+        deadline: deadline,
+        jenis: jenis
+    });
 
-    if (role === 'pengembangan' || role.split('_')[0] === 'asesor'){
-        const tugas = new Tugas({
-            judul: judul,
-            deskripsi: deskripsi,
-            deadline: deadline,
-            dari: role
-        });
-
-        tugas.save(() => {
+    tugas.save((err) => {
+        if (err){
+            res.send('MongoDriver Error! Please contact our staff.');
+        }
+        else {
             res.redirect('/dashPanit');
-        });
-    }
+        }
+        
+    });
 });
 
 // route untuk memberikan status tugas untuk maba

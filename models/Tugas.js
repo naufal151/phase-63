@@ -7,10 +7,6 @@ const User = require('./User');
 const MyObjectId = mongoose.Schema.Types.ObjectId;
 
 const tugasSchema = new mongoose.Schema({
-    user: {
-        type: MyObjectId,
-        ref: 'User'
-    },
     judul: String,
     deskripsi: String,
     deadline: Date,
