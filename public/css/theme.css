@@ -354,6 +354,10 @@ a {
   a:hover {
     color: #4e3ccc;
     text-decoration: none; }
+  .icon-delete{
+    color: red; }
+    .icon-delete:hover{
+      color: rgb(158, 12, 12); }
 
 a:not([href]):not([class]), a:not([href]):not([class]):hover {
   color: inherit;

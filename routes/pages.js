@@ -25,6 +25,10 @@ router.get('/dashboard', (req, res) => {
     res.render('dashboard', {message: req.flash('message')});
 });
 
+router.get('/nightmodebackground', (req, res) => {
+    res.render('background', {message: req.flash('message')});
+});
+
 router.get('/home', (req, res) => {
     res.render('home', {message: req.flash('message')});
 });
