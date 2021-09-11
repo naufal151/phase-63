@@ -49,6 +49,10 @@ router.get('/user', (req, res) => {
     res.render('user', {message: req.flash('message')});
 });
 
+router.get('/edituser', (req, res) => {
+    res.render('edituser', {message: req.flash('message')});
+});
+
 // route untuk menampilkan halaman dashboard untuk maba
 router.get('/dashMaba', (req, res) => {
     if (req.isAuthenticated()){
