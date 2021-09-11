@@ -1,5 +1,8 @@
 <%- include('partials/header') %>
 
+<h1><%= maba.nama %></h1>
+<h1><%= maba.npm %></h1>
+<h1><%= maba.kelompok %></h1>
 <h1>Jumlah tugas</h1>
 <p><%= tugas.length %></p>
 
@@ -10,31 +13,31 @@
             <th>judul tugas</th>
             <th>deskripsi tugas</th>
             <th>deadline</th>
+            <th>status</th>
+            <th>upload tugas</th>
         </tr>
-        <% tugas.forEach((tugasMaba, index) => { %>
+        <% tugas.forEach((tugasMaba) => { %>
             <tr>
                 <td><%= tugasMaba.judul %></td>
                 <td><%= tugasMaba.deskripsi %></td>
                 <td><%= tugasMaba.deadline.toDateString() %></td>
                 <% if (maba.file.length !== 0){ %>
-                    <td><%= maba.file[index].status %></td>
+                    <!-- fix this !!!! -->
+                    <td><%= maba.file.find(x => x.tugas == tugasMaba.id).status %></td>
                 <% } else { %>
                     <td>belum ada tugas</td>
                 <% } %>
+                <td>
+                    <form action="/mabaUpload/<%= tugasMaba.id %>" method="post" enctype="multipart/form-data">
+                        <input type="file" name="file">
+                        <button type="submit">Kirim</button>
+                    </form>
+                </td>
             </tr>
         <% }) %>
     </table> 
 <% } else { %>
     <h1>Tidak ada tugas</h1>
 <% } %>
-
-<br>
-
-<h3>Upload tugas</h3>
-<form action="/mabaUpload" method="POST" enctype="multipart/form-data">
-    <label for="">Pilih file untuk diupload</label>
-    <input type="file" name="file"><br>
-    <button type="submit">Kirim</button>
-</form>
 
 <%- include('partials/footer') %>

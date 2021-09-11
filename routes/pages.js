@@ -41,6 +41,10 @@ router.get('/materi', (req, res) => {
     res.render('materi', {message: req.flash('message')});
 });
 
+router.get('/materi/civitas', (req, res) => {
+    res.render('materi/materi_1', {message: req.flash('message')});
+});
+
 router.get('/user', (req, res) => {
     res.render('user', {message: req.flash('message')});
 });
@@ -139,6 +143,25 @@ router.get('/dashPanit/:filename', (req, res) => {
     else {
         res.redirect('/login');
     }
+});
+
+// route untuk ganti profil maba
+router.get('/profileMaba', (req, res) => {
+    // if (req.isAuthenticated()){
+    //     if (req.user.role === 'maba'){
+    //         Maba.findOne({'user': req.user.id}, (err, maba) => {
+    //             if (err){
+    //                 console.log(err);
+    //             }
+    //             else {
+    //                 if (maba){
+    //                     res.render('profilMaba', {maba: maba});
+    //                 }
+    //             }
+    //         });
+    //     }
+    // }
+    res.render('profilMaba');
 });
 
 module.exports = router;

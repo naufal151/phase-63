@@ -17485,3 +17485,131 @@ pre[class*="language-"].line-numbers {
   text-align: center;
   padding: 10px 10px;
 }
+
+/* ---------------------------------------- */
+/* -----------Add project pop up----------- */
+/* ---------------------------------------- */
+
+/* The actual popup */
+.popup-content {
+  visibility: hidden;
+  background-color: rgba(67, 43, 224, 0.9);
+  color: black;
+  border-radius: 6px;
+  border: 2px solid;
+  position: absolute;
+  z-index: 1;
+  right: 25%;
+  left: 20%;
+  bottom: -70%;
+  width: 60%;
+  height: 250%;
+}
+
+/* Popup arrow */
+.popup-content::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.show {
+  visibility: visible;
+  -webkit-animation: fadeIn 0.65s;
+  animation: fadeIn 0.65s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+/* -------------------------------------- */
+/* -----------Add project form----------- */
+/* -------------------------------------- */
+
+.addproject-form {
+  padding-top: 5%;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.addproject-form label {
+  font-size: 1.25em;
+  text-align: start;
+  margin: auto 0;
+}
+.addproject-form .title {
+  width: 100%;
+  height: 2.5em;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  padding-left: 10px;
+  background: whitesmoke;
+}
+.addproject-form .splitted {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.addproject-form .type {
+  width: 25%;
+  height: 2.5em;
+  margin: auto;
+  margin-right: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+.addproject-form .date {
+  width: 25%;
+  height: 2.5em;
+  margin: auto;
+  border-radius: 5px;
+  text-align: center;
+}
+.addproject-form .description {
+  resize: none;
+  width: 100%;
+  height: 9.5em;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background: whitesmoke;
+  padding: 10px;
+}
+.form-data:hover {
+  border-color: #0d6efd;
+}
+.close-popup {
+  position: absolute;
+  top: 0%;
+  right: 0%;
+}.close-popup i {
+  font-size: 2em;
+  cursor: pointer;
+  margin-right: 10px;
+  color: black;
+}.close-popup i:hover {
+  color: #212529;
+}
+.submit-form {
+  display: block;
+  width: 100%;
+  height: 2.75em;
+  border-radius: 10px;
+  margin-top: 15px;
+}.submit-form:hover {
+  background: #d1cfd8;
+}

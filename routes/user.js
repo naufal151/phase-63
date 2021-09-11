@@ -69,8 +69,8 @@ router.post('/register', (req, res) => {
 });
 
 router.post('/registerPanit', (req, res) => {
-    if (req.body.token === 27017){
-        res.render('registerPanit');
+    if (req.body.token === process.env.TOKEN){
+        res.render('tokenCheck');
     }
     else {
         req.flash('message', 'Token yang anda masukan salah.');
@@ -149,7 +149,7 @@ const storage = multer.diskStorage({
 const upload = multer({storage: storage});
 
 // route untuk upload tugas maba
-router.post('/mabaUpload', upload.single('file'), (req, res, next) => {
+router.post('/mabaUpload/:tugasId', upload.single('file'), (req, res, next) => {
     const role = req.user.role;
 
     if (role === 'maba'){
@@ -163,11 +163,12 @@ router.post('/mabaUpload', upload.single('file'), (req, res, next) => {
             else {
                 if (user){
                     const file = {
+                        tugas: req.params['tugasId'],
                         data: data,
                         contentType: contentType,
                         date: new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate(),
                         time: new Date().getHours() + ':' + new Date().getMinutes() + ':' + new Date().getSeconds(),
-                        status: ''
+                        status: 'diperiksa'
                     }
 
                     user.file.push(file);
@@ -192,21 +193,39 @@ router.post('/panitUpload', (req, res) => {
     const judul = req.body.judul;
     const deskripsi = req.body.deskripsi;
     const deadline = req.body.deadline;
+    const jenis = req.body.jenis;
 
-    const role = req.user.role;
+    const tugas = new Tugas({
+        judul: judul,
+        deskripsi: deskripsi,
+        deadline: deadline,
+        jenis: jenis
+    });
 
-    if (role === 'pengembangan' || role.split('_')[0] === 'asesor'){
-        const tugas = new Tugas({
-            judul: judul,
-            deskripsi: deskripsi,
-            deadline: deadline,
-            dari: role
-        });
-
-        tugas.save(() => {
+    tugas.save((err) => {
+        if (err){
+            res.send('MongoDriver Error! Please contact our staff.');
+        }
+        else {
             res.redirect('/dashPanit');
-        });
-    }
+        }
+        
+    });
+});
+
+// route untuk delete upload tugas dari panitia
+// cara pake --> <form method="POST" action="/removeTugas/<%= tugasMaba.id %>?_method=DELETE"></form>
+router.delete('/removeTugas/:tugasId', (req, res) => {
+    Tugas.findByIdAndRemove(req.params.tugasId, (err, tugas) => {
+        if (err){
+            console.log(err);
+        }
+        else {
+            if (tugas){
+                res.redirect('/dashPanit');
+            }
+        }
+    });
 });
 
 // route untuk memberikan status tugas untuk maba
@@ -235,24 +254,30 @@ router.post('/statusTugas/:mabaId/:fileIndex', (req, res) => {
 
 // route untuk ganti profil maba
 router.post('/profileChange', (req, res) => {
-    const email = req.body.email;
-    const ig = req.body.ig;
+    const ttl = req.body.ttl;
     const alamat = req.body.alamat;
+    const desc = req.body.desc;
+    const ig = req.body.ig;
+    const wa = req.body.wa;
 
-    if (req.user.role === 'maba'){
-        Maba.findOne({'user': req.user.id}, (err, maba) => {
-            maba.email = email;
-            maba.ig = ig;
-            maba.alamat = alamat;
+    Maba.findOne({'user': req.user.id}, (err, maba) => {
+        if (err){
+            res.send(err);
+        }
+        else {
+            if (maba){
+                maba.ttl = ttl;
+                maba.alamat = alamat;
+                maba.desc = desc;
+                maba.ig = ig;
+                maba.wa = wa;
 
-            maba.save(() => {
-                res.redirect('/dashMaba');
-            });
-        });
-    }
-    else {
-        res.redirect('/');
-    }
+                maba.save(() => {
+                    res.redirect('/dashMaba');
+                });
+            }
+        }
+    });
 });
 
 module.exports = router;
