@@ -213,6 +213,21 @@ router.post('/panitUpload', (req, res) => {
     });
 });
 
+// route untuk delete upload tugas dari panitia
+// cara pake --> <form method="POST" action="/removeTugas/<%= tugasMaba.id %>?_method=DELETE"></form>
+router.delete('/removeTugas/:tugasId', (req, res) => {
+    Tugas.findByIdAndRemove(req.params.tugasId, (err, tugas) => {
+        if (err){
+            console.log(err);
+        }
+        else {
+            if (tugas){
+                res.redirect('/dashPanit');
+            }
+        }
+    });
+});
+
 // route untuk memberikan status tugas untuk maba
 router.post('/statusTugas/:mabaId/:fileIndex', (req, res) => {
     const status = req.body.status;
@@ -239,24 +254,30 @@ router.post('/statusTugas/:mabaId/:fileIndex', (req, res) => {
 
 // route untuk ganti profil maba
 router.post('/profileChange', (req, res) => {
-    const email = req.body.email;
-    const ig = req.body.ig;
+    const ttl = req.body.ttl;
     const alamat = req.body.alamat;
+    const desc = req.body.desc;
+    const ig = req.body.ig;
+    const wa = req.body.wa;
 
-    if (req.user.role === 'maba'){
-        Maba.findOne({'user': req.user.id}, (err, maba) => {
-            maba.email = email;
-            maba.ig = ig;
-            maba.alamat = alamat;
+    Maba.findOne({'user': req.user.id}, (err, maba) => {
+        if (err){
+            res.send(err);
+        }
+        else {
+            if (maba){
+                maba.ttl = ttl;
+                maba.alamat = alamat;
+                maba.desc = desc;
+                maba.ig = ig;
+                maba.wa = wa;
 
-            maba.save(() => {
-                res.redirect('/dashMaba');
-            });
-        });
-    }
-    else {
-        res.redirect('/');
-    }
+                maba.save(() => {
+                    res.redirect('/dashMaba');
+                });
+            }
+        }
+    });
 });
 
 module.exports = router;

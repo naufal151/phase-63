@@ -15,10 +15,11 @@ const mabaSchema = new mongoose.Schema({
     nama: String,
     npm: Number,
     kelompok: String,
-    email: String,
+    desc: String,
+    ttl: String,
     ig: String,
+    wa: String,
     alamat: String,
-    tgl: Date,
     file: [{
         tugas: {
             type: MyObjectId, 

@@ -1,0 +1,18 @@
+<%- include('partials/header') %>
+
+
+<form action="/profileChange" method="post">
+    <label for="">Tempat, Tanggal Lahir: </label>
+    <input type="text" name="ttl"><br>
+    <label for="">Instagram: </label>
+    <input type="text" name="ig"><br>
+    <label for="">Whatsapp: </label>
+    <input type="text" name="wa"><br>
+    <label for="">Deskripsi Diri: </label>
+    <textarea name="desc" id="" cols="30" rows="10"></textarea><br>
+    <label for="">Alamat: </label>
+    <textarea name="alamat" id="" cols="30" rows="10"></textarea>
+    <button type="submit">Simpan</button>
+</form>
+
+<%- include('partials/footer') %>
