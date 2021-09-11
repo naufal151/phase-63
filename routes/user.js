@@ -26,7 +26,7 @@ router.post('/login', (req, res) => {
         else {
             passport.authenticate('local', { failureRedirect: '/login', failureFlash: req.flash('message', 'Username atau Password salah! Coba ulangi lagi.')})(req, res, () => {
                 if (req.user.role === 'maba'){
-                    res.redirect('/dashMaba');
+                    res.redirect('/home');
                 }
                 else {
                     res.redirect('/dashPanit');
@@ -70,11 +70,11 @@ router.post('/register', (req, res) => {
 
 router.post('/registerPanit', (req, res) => {
     if (req.body.token === process.env.TOKEN){
-        res.render('tokenCheck');
+        res.render('registerPanit');
     }
     else {
         req.flash('message', 'Token yang anda masukan salah.');
-        res.redirect('/registerPanit');
+        res.redirect('/tokenCheck');
     }
 });
 
@@ -117,7 +117,7 @@ router.post('/profile', (req, res) => {
     });
 
     userProfile.save(() => {
-        res.redirect('/dashMaba');
+        res.redirect('/home');
     });
 });
 
@@ -149,7 +149,7 @@ const storage = multer.diskStorage({
 const upload = multer({storage: storage});
 
 // route untuk upload tugas maba
-router.post('/mabaUpload/:tugasId', upload.single('file'), (req, res, next) => {
+router.post('/mabaUpload/:id', upload.single('file'), (req, res, next) => {
     const role = req.user.role;
 
     if (role === 'maba'){
@@ -163,7 +163,7 @@ router.post('/mabaUpload/:tugasId', upload.single('file'), (req, res, next) => {
             else {
                 if (user){
                     const file = {
-                        tugas: req.params['tugasId'],
+                        tugas: req.params.id,
                         data: data,
                         contentType: contentType,
                         date: new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate(),
@@ -173,12 +173,12 @@ router.post('/mabaUpload/:tugasId', upload.single('file'), (req, res, next) => {
 
                     user.file.push(file);
                     user.save(() => {
-                        res.redirect('/dashMaba');
+                        res.redirect('/home');
                     });
                 }
                 else {
                     req.flash('message', 'Gagal upload tugas!');
-                    res.redirect('/dashMaba');
+                    res.redirect('/home');
                 }
             }
         });
@@ -215,7 +215,7 @@ router.post('/panitUpload', (req, res) => {
 
 // route untuk delete upload tugas dari panitia
 // cara pake --> <form method="POST" action="/removeTugas/<%= tugasMaba.id %>?_method=DELETE"></form>
-router.delete('/removeTugas/:tugasId', (req, res) => {
+router.post('/removeTugas/:tugasId', (req, res) => {
     Tugas.findByIdAndRemove(req.params.tugasId, (err, tugas) => {
         if (err){
             console.log(err);
@@ -273,7 +273,7 @@ router.post('/profileChange', (req, res) => {
                 maba.wa = wa;
 
                 maba.save(() => {
-                    res.redirect('/dashMaba');
+                    res.redirect('/home');
                 });
             }
         }

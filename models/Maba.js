@@ -21,10 +21,7 @@ const mabaSchema = new mongoose.Schema({
     wa: String,
     alamat: String,
     file: [{
-        tugas: {
-            type: MyObjectId, 
-            ref: 'Tugas'
-        },
+        tugas: MyObjectId,
         data: Buffer,
         contentType: String,
         date: String,

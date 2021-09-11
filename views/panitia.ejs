@@ -78,7 +78,7 @@
                                         </h1>
                                         <p class="mb-0">Kelompok<span class="text-dark me-2">
                                                 <% maba.kelompok %>
-                                            </span><%= kelompok %></p>
+                                            </span><%= role %></p>
                                     </div>
                                 </div>
                             </div>
@@ -118,7 +118,7 @@
                                     <!-- heading -->
                                     <div class="d-flex justify-content-between align-items-center mb-3">
                                         <div>
-                                            <h4 class="mb-0">TO DO LIST</h4>
+                                            <h4 class="mb-0">Motto Assessor</h4>
                                         </div>
                                         <div class="icon-shape icon-md bg-light-primary text-primary rounded-1">
                                             <i class="bi bi-bullseye fs-4"></i>
@@ -126,8 +126,8 @@
                                     </div>
                                     <!-- project number -->
                                     <div>
-                                        <h1 class="fw-bold">0</h1>
-                                        <p class="mb-0"><span class="text-success me-2">5%</span>Completed</p>
+                                        <h1 class="fw-bold">Gatau sii kita mh sbenernya btuh tugas doang</h1>
+                                        <p class="mb-0"><span class="text-success me-2">Oleh</span>Zara Kania</p>
                                     </div>
                                 </div>
                             </div>
@@ -188,12 +188,29 @@
                                                 <tbody class="table-body">
                                                     <% if (tugas.length !==0) { %>
                                                         <% tugas.forEach((tugasMaba)=> { %>
+
+                                                    <span class="popup-deletecontent" id="popup-delete">
+                                                        <form class="deleteproject-form" method="POST" action="/removeTugas/<%= tugasMaba.id %>">
+                                                            <div class="delete-content">
+                                                                <h3>Are you sure want to delete it?</h3>
+                                                                <div class="splitted mt-3 mb-3">
+                                                                    <button class="button-confirm">Hell Yeah!</button>
+                                                                    <a class="close-confirm" onclick="formCloseDelete()">Nevermind...</a>
+                                                                </div>
+                                                                <div class="warning">
+                                                                    <h5>WARNING!</h5>  
+                                                                    <p>Your action cannot be undone. Please Proceed with caution.</p>    
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </span>
+
                                                     <tr>
                                                         <td class="align-middle">
                                                             <div class="d-flex align-items-center">
                                                                 <div>
                                                                     <div class="icon-shape icon-md border p-4 rounded-1">
-                                                                        <a href="/home">
+                                                                        <a onclick="formPopupDelete()">
                                                                             <i class="bi bi-trash-fill icon-delete" style="font-size: 25px;"></i>
                                                                         </a>
                                                                     </div>
@@ -213,7 +230,7 @@
                                                             </span></td>
 
                                                         <td class="align-middle text-dark middle-align">
-                                                            <a href="/" class="text-inherit">Open tab</a>
+                                                            <a href="/tugas-detail/<%= tugasMaba.id %>" class="text-inherit">Open tab</a>
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -254,7 +271,7 @@
                                                             <td class="align-middle">
                                                                 <div class="d-flex align-items-center">
                                                                     <div>
-                                                                        <img src="images/avatar/avatar-2.jpg" alt=""
+                                                                        <img src="https://media.unpad.ac.id/photo/mahasiswa/140310/2019/<%= mabas.npm %>.JPG" alt=""
                                                                             class="avatar-md avatar rounded-circle">
                                                                     </div>
                                                                     <div class="ms-3 lh-1">
@@ -298,6 +315,14 @@
         }
         function formClose() {
             var popup = document.getElementById("popup-addproject");
+            popup.classList.remove("show");
+        }
+        function formPopupDelete() {
+            var popup = document.getElementById("popup-delete");
+            popup.classList.toggle("show");
+        }
+        function formCloseDelete() {
+            var popup = document.getElementById("popup-delete");
             popup.classList.remove("show");
         }
     </script>

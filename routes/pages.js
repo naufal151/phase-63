@@ -54,7 +54,7 @@ router.get('/nightmodebackground', (req, res) => {
 });
 
 router.get('/registerPanit', (req, res) => {
-    res.render('registerPanit');
+    res.render('tokenCheck');
 });
 
 router.get('/tugas', (req, res) => {
@@ -80,16 +80,16 @@ router.get('/tugas', (req, res) => {
     }
 });
 
-router.get('/tugas-detail', (req, res) => {
+router.get('/tugas-detail/:id', (req, res) => {
     if (req.isAuthenticated()){
-        Tugas.find({}, (err, tugas) => {
+        Tugas.findById(req.params.id, (err, tugas) => {
             if (err){
                 console.log(err);
             }
             else {
                 if (tugas){
-                    Maba.findOne({user: req.user.id}, (err, maba) => {
-                        res.render('tugas-detail', {tugas: tugas, maba: maba});
+                    Maba.find({'file': {$ne: null}}, (err, peserta) => {
+                        res.render('tugas-detail', {tugas: tugas, maba: peserta, user: req.user.role});
                     });
                 }
                 else {
@@ -151,7 +151,7 @@ router.get('/tes', (req, res) => {
 router.get('/dashPanit', (req, res) => {
     if (req.isAuthenticated()){
         const role = req.user.role
-        if (role.split('_')[0] === 'asesor'){
+        if (role.split('_')[0] !== 'maba'){
             Maba.find({'kelompok': role.split('_')[1]}, (err, maba) => {
                 Tugas.find({}, (err, tugas) => {
                     if (err){
