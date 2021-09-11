@@ -17501,13 +17501,13 @@ pre[class*="language-"].line-numbers {
   color: black;
   border-radius: 6px;
   border: 2px solid;
-  position: absolute;
+  position: fixed;
   z-index: 1;
   right: 25%;
   left: 20%;
-  bottom: -70%;
+  bottom: 15%;
   width: 60%;
-  height: 250%;
+  height: 70%;
 }
 
 /* Popup arrow */
@@ -17598,15 +17598,15 @@ pre[class*="language-"].line-numbers {
 }
 .close-popup {
   position: absolute;
-  top: 0%;
+  top: 2%;
   right: 0%;
 }.close-popup i {
-  font-size: 2em;
-  cursor: pointer;
-  margin-right: 10px;
-  color: black;
-}.close-popup i:hover {
-  color: #212529;
+    font-size: 2em;
+    cursor: pointer;
+    margin-right: 10px;
+    color: black;
+  }.close-popup i:hover {
+      color: #212529;
 }
 .submit-form {
   display: block;
