@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>Phase 63</title>
+        <!-- connection FAVICONS-->
+        <link
+        rel="icon" href="img/Logo_2.png">
+        <!-- THE BACKGROUND OF THE STATUS-BAR (ON MOBILE)-->
+        <meta
+        name="theme-color" content="#000">
+
+
+        <!-- CSS File -->
+        <link rel="stylesheet" href="css/mahasiswa.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.7/tailwind.min.css" integrity="sha512-y6ZMKFUQrn+UUEVoqYe8ApScqbjuhjqzTuwUMEGMDuhS2niI8KA3vhH2LenreqJXQS+iIXVTRL2iaNfJbDNA1Q==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    </head>
+
+
+    <body style="background-image: url(/public/img/bgphase1abs.svg); background-size: cover;">
+        <%- include('partials/navbar') %>
+
+        <script src="/public/js/hamburger.js"></script>
+
+        <div class="animation-wrapper">
+            <div class="particle particle-1"></div>
+            <div class="particle particle-2"></div>
+            <div class="particle particle-3"></div>
+            <div class="particle particle-4"></div>
+        </div>
+
+        <div class="max-w-4xl flex items-center h-auto lg:h-screen flex-wrap mx-auto my-32 lg:my-0">
+            <div id="profile" class="w-full lg:w-3/5 rounded-lg lg:rounded-l-lg lg:rounded-r-lg shadow-2xl bg-white opacity-75 mx-6 lg:mx-0">
+
+
+                <div
+                    class="p-4 md:p-12 text-center lg:text-left">
+                    <!-- Image for mobile view-->
+
+                    <h1 class="text-3xl font-bold pt-8 lg:pt-0">Your Name</h1>
+                    <div class="mx-auto lg:mx-0 w-4/5 pt-3 border-b-2 border-green-500 opacity-25"></div>
+                    <p class="pt-4 text-base font-bold flex items-center justify-center lg:justify-start">
+                        <input type="date" id="date" name="date" class="w-full bg-gray-800 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    </p>
+                    <div class="relative mb-4">
+                        <label for="name" class="leading-7 text-sm text-gray-600">Alamat</label>
+                        <textarea id="message" name="message" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
+                    </div>
+
+                    <div class="relative mb-4">
+                        <label for="name" class="leading-7 text-sm text-gray-600">Bio</label>
+                        <textarea id="message" name="message" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
+                    </div>
+
+
+                    <div class="relative mb-4">
+                        <label for="name" class="leading-7 text-sm text-gray-600">Instagram</label>
+                        <input type="text" id="name" name="name" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    </div>
+                    <div class="relative mb-4">
+                        <label for="name" class="leading-7 text-sm text-gray-600">Whatsapp</label>
+                        <input type="text" id="name" name="name" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    </div>
+
+
+                    <div class="pt-6 pb-4">
+                        <button class="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full">
+                            Save
+                        </button>
+                        <button class="bg-red-700 hover:bg-red-900 text-white font-bold py-2 px-4 rounded-full">
+                            Cancel
+                        </button>
+                    </div>
+
+                    <!-- Use https://simpleicons.org/ to find the svg for your preferred product -->
+
+                </div>
+
+            </div>
+        </div>
+    </body>
+</html>
