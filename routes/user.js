@@ -96,6 +96,8 @@ router.post('/registerPanit/reg', (req, res) => {
                     else {
                         passport.authenticate('local', {failureRedirect: '/registerPanit'})(req, res, () => {
                             user.role = req.body.role;
+                            user.npm = req.body.npm;
+                            user.angkatan = req.body.angkatan;
                             user.save(() => {
                                 res.redirect('/dashPanit');
                             });

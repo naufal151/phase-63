@@ -29,6 +29,8 @@
         <!-- Theme CSS -->
         <!-- build:css @@webRoot/assets/css/theme.min.css -->
         <link rel="stylesheet" href="css/theme.css">
+        <link rel="stylesheet" href="css/mahasiswa.css">
+        
         <!-- endbuild -->
 
         <!-- Jquery -->
@@ -48,13 +50,16 @@
                 <div class="container-fluid mt-n22 px-6">
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-12">
+
                             <!-- Page header -->
                             <div>
+                                <a class="mt-3 text-white inline-flex items-center" href="/home">Kembali Ke Home</a>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="mb-2 mb-lg-0">
                                         <h3 class="mb-0 fw-bold text-white">Dashboard Panitia</h3>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-md-12 col-12 mt-6">
@@ -76,9 +81,7 @@
                                         <h1 class="fw-bold">
                                             <% maba.nama %><%= uname %>
                                         </h1>
-                                        <p class="mb-0">Kelompok<span class="text-dark me-2">
-                                                <% maba.kelompok %>
-                                            </span><%= role %></p>
+                                        <p class="mb-0"><span class="text-success me-2">Kelompok</span><span class="text-dark me-2"><% maba.kelompok %><%= role %></span></p>
                                     </div>
                                 </div>
                             </div>
@@ -126,8 +129,8 @@
                                     </div>
                                     <!-- project number -->
                                     <div>
-                                        <h1 class="fw-bold">Gatau sii kita mh sbenernya btuh tugas doang</h1>
-                                        <p class="mb-0"><span class="text-success me-2">Oleh</span>Zara Kania</p>
+                                        <h4 class="fw-bold">Gatau sii kita mh sbenernya btuh tugas doang</h4>
+                                        <p class="mb-0"><span class="text-success me-2">Oleh</span>Zara Kania (11 September 2021)</p>
                                     </div>
                                 </div>
                             </div>
@@ -243,64 +246,61 @@
                             </div>
 
                         </div>
-                        <!-- row  -->
-                        <div class="row my-6">
+                    </div>
+                    <div class="row my-6">
 
-                            <!-- card  -->
-                            <div class="col-xl-12 col-lg-12">
-                                <div class="card h-100">
-                                    <!-- card header  -->
-                                    <div class="card-header bg-white border-bottom-0 py-4">
-                                        <h4 class="mb-0">Teams</h4>
-                                    </div>
-                                    <!-- table  -->
-                                            <div class="table-responsive">
-                                                <table class="table text-nowrap">
-                                                    <thead class="table-light">
-                                                        <tr>
-                                                            <th>Name</th>
-                                                            <th>Alamat</th>
-                                                            <th>Last Activity</th>
-                                                            <th></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <% if (maba.length !==0) { %>
-                                                            <% maba.forEach((mabas)=> { %>
-                                                        <tr>
-                                                            <td class="align-middle">
-                                                                <div class="d-flex align-items-center">
-                                                                    <div>
-                                                                        <img src="https://media.unpad.ac.id/photo/mahasiswa/140310/2019/<%= mabas.npm %>.JPG" alt=""
-                                                                            class="avatar-md avatar rounded-circle">
-                                                                    </div>
-                                                                    <div class="ms-3 lh-1">
-                                                                        <h5 class="fw-bold mb-1">
-                                                                            <%= mabas.nama %>
-                                                                        </h5>
-                                                                        <p class="mb-0">
-                                                                            <%= mabas.npm %>
-                                                                        </p>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td class="align-middle">
-                                                                <%= mabas.alamat %>
-                                                            </td>
-                                                            <td class="align-middle">3 May, 2021</td>
-                                                        </tr>
-                                                        <% }) %>
-                                                        <% } else { %>
-                                                            <h3 class="announcement">You don't have a team yet.</h3>
-                                                            <% } %>
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                        <!-- card  -->
+                        <div class="col-xl-12 col-lg-12">
+                            <div class="card h-100">
+                                <!-- card header  -->
+                                <div class="card-header bg-white border-bottom-0 py-4">
+                                    <h4 class="mb-0">Teams</h4>
                                 </div>
+                                <!-- table  -->
+                                        <div class="table-responsive">
+                                            <table class="table text-nowrap">
+                                                <thead class="table-light table-head">
+                                                    <tr class="table-row">
+                                                        <th class="middle-align">Name</th>
+                                                        <th>Alamat</th>
+                                                        <th>Whatsapp</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <% if (maba.length !==0) { %>
+                                                        <% maba.forEach((mabas)=> { %>
+                                                    <tr>
+                                                        <td class="align-middle">
+                                                            <div class="d-flex align-items-center">
+                                                                <div>
+                                                                    <img src="https://media.unpad.ac.id/photo/mahasiswa/140310/2021/<%= mabas.npm %>.JPG" alt=""
+                                                                        class="avatar-md avatar rounded-circle" style="object-fit: cover;">
+                                                                </div>
+                                                                <div class="ms-3 lh-1">
+                                                                    <h5 class="fw-bold mb-1">
+                                                                        <%= mabas.nama %>
+                                                                    </h5>
+                                                                    <p class="mb-0">
+                                                                        <%= mabas.npm %>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td class="align-middle">
+                                                            <%= mabas.alamat %>
+                                                        </td>
+                                                        <td class="align-middle"><%= mabas.wa %></td>
+                                                    </tr>
+                                                    <% }) %>
+                                                    <% } else { %>
+                                                        <h3 class="announcement">You don't have a team yet.</h3>
+                                                        <% } %>
+                                                </tbody>
+                                            </table>
+                                        </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
         </div>
     </div>
