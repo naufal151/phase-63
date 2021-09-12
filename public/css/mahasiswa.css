@@ -119,6 +119,9 @@ body {
         font-size: 3vmin;
         color: #fbf3f2;
     }
+    .nav-avatar {
+        display: none;
+    }
 }
 @media screen and (min-width: 864px){
     .menu-toggle {
@@ -128,6 +131,9 @@ body {
         display: none;
     }
     .nav-link li:nth-child(5) {
+        display: none;
+    }
+    .nav-link .profile {
         display: none;
     }
 }
