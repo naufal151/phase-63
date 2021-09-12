@@ -113,7 +113,12 @@ router.post('/profile', (req, res) => {
         user: req.user.id,
         nama: req.body.nama,
         npm: req.body.npm,
-        kelompok: req.body.kelompok
+        kelompok: req.body.kelompok,
+        ttl: req.body.ttl,
+        wa: req.body.wa,
+        ig: req.body.ig,
+        alamat: req.body.alamat,
+        desc: req.body.desc
     });
 
     userProfile.save(() => {
