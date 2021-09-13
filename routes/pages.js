@@ -21,61 +21,156 @@ router.get('/register', (req, res) => {
     res.render('register', {message: req.flash('message')});
 });
 
-router.get('/dashboard', (req, res) => {
-    res.render('dashboard', {message: req.flash('message')});
-});
-
-router.get('/home', (req, res) => {
-    res.render('home', {message: req.flash('message')});
+router.get('/nightmodebackground', (req, res) => {
+    res.render('background', {message: req.flash('message')});
 });
 
 router.get('/registerPanit', (req, res) => {
-    res.render('registerPanit');
+    res.render('tokenCheck');
 });
 
 router.get('/tugas', (req, res) => {
-    res.render('tugas', {message: req.flash('message')});
+    if (req.isAuthenticated()){
+        Tugas.find({}, (err, tugas) => {
+            if (err){
+                console.log(err);
+            }
+            else {
+                if (tugas){
+                    Maba.findOne({user: req.user.id}, (err, maba) => {
+                        res.render('tugas', {tugas: tugas, maba: maba});
+                    });
+                }
+                else {
+                    req.flash('message', 'Tidak ada tugas!');
+                }
+            }
+        });
+    }
+    else {
+        res.redirect('/login');
+    }
+});
+
+router.get('/tugas-detail/:id', (req, res) => {
+    if (req.isAuthenticated()){
+        Tugas.findById(req.params.id, (err, tugas) => {
+            if (err){
+                console.log(err);
+            }
+            else {
+                if (tugas){
+                    Maba.find({'file': {$ne: null}}, (err, peserta) => {
+                        res.render('tugas-detail', {tugas: tugas, maba: peserta, user: req.user.role});
+                    });
+                }
+                else {
+                    req.flash('message', 'Tidak ada tugas!');
+                }
+            }
+        });
+    }
+    else {
+        res.redirect('/login');
+    }
 });
 
 router.get('/materi', (req, res) => {
-    res.render('materi', {message: req.flash('message')});
+    if (req.isAuthenticated()){
+        Tugas.find({}, (err, tugas) => {
+            if (err){
+                console.log(err);
+            }
+            else {
+                if (tugas){
+                    Maba.findOne({user: req.user.id}, (err, maba) => {
+                        res.render('materi', {tugas: tugas, maba: maba});
+                    });
+                }
+                else {
+                    req.flash('message', 'Tidak ada tugas!');
+                }
+            }
+        });
+    }
+    else {
+        res.redirect('/login');
+    }
 });
 
-router.get('/materi/civitas', (req, res) => {
-    res.render('materi/materi_1', {message: req.flash('message')});
+router.get('/civitas', (req, res) => {
+    if (req.isAuthenticated()){
+        Tugas.find({}, (err, tugas) => {
+            if (err){
+                console.log(err);
+            }
+            else {
+                if (tugas){
+                    Maba.findOne({user: req.user.id}, (err, maba) => {
+                        res.render('materi/materi_1', {tugas: tugas, maba: maba});
+                    });
+                }
+                else {
+                    req.flash('message', 'Tidak ada tugas!');
+                }
+            }
+        });
+    }
+    else {
+        res.redirect('/login');
+    }
 });
 
-router.get('/user', (req, res) => {
-    res.render('user', {message: req.flash('message')});
+router.get('/user/:id', (req, res) => {
+    if (req.isAuthenticated()){
+        Maba.findById(req.params.id, (err, mabas) => {
+            if (err){
+                console.log(err);
+            }
+            else {
+                res.render('user', {maba: mabas});
+            }
+        });
+    }
+    else {
+        res.redirect('/login');
+    }
 });
 
-router.get('/edituser', (req, res) => {
-    res.render('edituser', {message: req.flash('message')});
+router.get('/edituser/:id', (req, res) => {
+    if (req.isAuthenticated()){
+        Maba.findById(req.params.id, (err, mabas) => {
+            if (err){
+                console.log(err);
+            }
+            else {
+                res.render('edituser', {maba: mabas});
+            }
+        });
+    }
+    else {
+        res.redirect('/login');
+    }
 });
 
 // route untuk menampilkan halaman dashboard untuk maba
-router.get('/dashMaba', (req, res) => {
+router.get('/home', (req, res) => {
     if (req.isAuthenticated()){
-        if (req.user.role === 'maba'){
-            Tugas.find({}, (err, tugas) => {
-                if (err){
-                    console.log(err);
+        Tugas.find({}, (err, tugas) => {
+            if (err){
+                console.log(err);
+            }
+            else {
+                if (tugas){
+                    Maba.findOne({user: req.user.id}, (err, maba) => {
+                        res.render('home', {tugas: tugas, maba: maba});
+                    });
                 }
                 else {
-                    if (tugas){
-                        Maba.findOne({user: req.user.id}, (err, maba) => {
-                            res.render('home', {tugas: tugas, maba: maba});
-                        });
-                    }
-                    else {
-                        req.flash('message', 'Tidak ada tugas!');
-                    }
+                    req.flash('message', 'Tidak ada tugas!');
                 }
-            });
-        }
-        else {
-            res.redirect('/');
-        }
+            }
+        });
     }
     else {
         res.redirect('/login');
@@ -94,7 +189,7 @@ router.get('/tes', (req, res) => {
 router.get('/dashPanit', (req, res) => {
     if (req.isAuthenticated()){
         const role = req.user.role
-        if (role.split('_')[0] === 'asesor'){
+        if (role.split('_')[0] !== 'maba'){
             Maba.find({'kelompok': role.split('_')[1]}, (err, maba) => {
                 Tugas.find({}, (err, tugas) => {
                     if (err){
@@ -127,6 +222,8 @@ router.get('/dashPanit', (req, res) => {
                     }
                 });
             });
+        }else {
+            res.redirect('/home');
         }
     }
     else {
@@ -137,7 +234,7 @@ router.get('/dashPanit', (req, res) => {
 // route untuk menampilkan tugas maba
 router.get('/dashPanit/:filename', (req, res) => {
     if (req.isAuthenticated()){
-        if (req.user.role === 'pengembangan' || req.user.role.split('_')[0] === 'asesor'){
+        if (req.user.role === 'pengembangan' || req.user.role.split('_')[0] === 'asesor' || req.user.role !== 'maba'){
             res.sendFile(__dirname + '/uploads/' + req.params['filename']);
         }
         else {

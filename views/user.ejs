@@ -15,7 +15,7 @@
 
 
         <!-- CSS File -->
-        <link rel="stylesheet" href="css/mahasiswa.css">
+        <link rel="stylesheet" href="/public/css/mahasiswa.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.7/tailwind.min.css" integrity="sha512-y6ZMKFUQrn+UUEVoqYe8ApScqbjuhjqzTuwUMEGMDuhS2niI8KA3vhH2LenreqJXQS+iIXVTRL2iaNfJbDNA1Q==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     </head>
 
@@ -41,48 +41,55 @@
                 <div
                     class="p-4 md:p-12 text-center lg:text-left">
                     <!-- Image for mobile view-->
-                    <div class="block lg:hidden rounded-full shadow-xl mx-auto -mt-16 h-48 w-48 bg-cover bg-center" style="background-image: url('/public/img/ava/C.jpg')"></div>
+                    <div class="block lg:hidden rounded-full shadow-xl mx-auto -mt-16 h-48 w-48 bg-cover bg-center" style="background-image: url('https://media.unpad.ac.id/photo/mahasiswa/140310/2021/<%= maba.npm %>.JPG')"></div>
 
-                    <h1 class="text-3xl font-bold pt-8 lg:pt-0">Your Name</h1>
+                    <h1 class="text-3xl font-bold pt-8 lg:pt-0"><%= maba.nama %></h1>
                     <div class="mx-auto lg:mx-0 w-4/5 pt-3 border-b-2 border-green-500 opacity-25"></div>
                     <p class="pt-4 text-base font-bold flex items-center justify-center lg:justify-start">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 fill-current text-green-700 pr-4 account" viewbox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M6 3a1 1 0 011-1h.01a1 1 0 010 2H7a1 1 0 01-1-1zm2 3a1 1 0 00-2 0v1a2 2 0 00-2 2v1a2 2 0 00-2 2v.683a3.7 3.7 0 011.055.485 1.704 1.704 0 001.89 0 3.704 3.704 0 014.11 0 1.704 1.704 0 001.89 0 3.704 3.704 0 014.11 0 1.704 1.704 0 001.89 0A3.7 3.7 0 0118 12.683V12a2 2 0 00-2-2V9a2 2 0 00-2-2V6a1 1 0 10-2 0v1h-1V6a1 1 0 10-2 0v1H8V6zm10 8.868a3.704 3.704 0 01-4.055-.036 1.704 1.704 0 00-1.89 0 3.704 3.704 0 01-4.11 0 1.704 1.704 0 00-1.89 0A3.704 3.704 0 012 14.868V17a1 1 0 001 1h14a1 1 0 001-1v-2.132zM9 3a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1zm3 0a1 1 0 011-1h.01a1 1 0 110 2H13a1 1 0 01-1-1z" clip-rule="evenodd"/>
                         </svg>
-                        3 March 2021</p>
+                        <%= maba.ttl %></p>
                     <p class="pt-4 text-gray-600 text-base lg:text-sm flex items-center justify-center lg:justify-start">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 fill-current text-green-700 pr-4" viewbox="0 0 20 20" fill="currentColor">
                             <path d="M4 3a2 2 0 100 4h12a2 2 0 100-4H4z"/>
                             <path fill-rule="evenodd" d="M3 8h14v7a2 2 0 01-2 2H5a2 2 0 01-2-2V8zm5 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" clip-rule="evenodd"/>
                         </svg>
-                        140310190053</p>
+                        <%= maba.npm %></p>
                     <p class="pt-2 text-gray-600 text-xs lg:text-sm flex items-center justify-center lg:justify-start">
                         <svg class="h-4 fill-current text-green-700 pr-4" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20">
                             <path d="M10 20a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm7.75-8a8.01 8.01 0 0 0 0-4h-3.82a28.81 28.81 0 0 1 0 4h3.82zm-.82 2h-3.22a14.44 14.44 0 0 1-.95 3.51A8.03 8.03 0 0 0 16.93 14zm-8.85-2h3.84a24.61 24.61 0 0 0 0-4H8.08a24.61 24.61 0 0 0 0 4zm.25 2c.41 2.4 1.13 4 1.67 4s1.26-1.6 1.67-4H8.33zm-6.08-2h3.82a28.81 28.81 0 0 1 0-4H2.25a8.01 8.01 0 0 0 0 4zm.82 2a8.03 8.03 0 0 0 4.17 3.51c-.42-.96-.74-2.16-.95-3.51H3.07zm13.86-8a8.03 8.03 0 0 0-4.17-3.51c.42.96.74 2.16.95 3.51h3.22zm-8.6 0h3.34c-.41-2.4-1.13-4-1.67-4S8.74 3.6 8.33 6zM3.07 6h3.22c.2-1.35.53-2.55.95-3.51A8.03 8.03 0 0 0 3.07 6z"/>
                         </svg>
-                        Your Location - 25.0000° N, 71.0000° W</p>
-                    <p class="pt-8 text-sm">Totally optional short description about yourself, what you do and so on.</p>
-
-                    <div class="pt-6 pb-4">
-                        <button class="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full">
-                            Edit Profile
-                        </button>
-                    </div>
+                        <%= maba.alamat %></p>
+                    <p class="pt-8 text-sm"><%= maba.desc %></p>\
 
                     <div class="mt-6 pb-16 lg:pb-0 w-4/5 lg:w-full mx-auto flex flex-wrap items-center justify-between">
-                        <a class="link" href="#" data-tippy-content="@whatsapp_handle">
+                        <a class="link" href="#" data-tippy-content="<%= maba.ig %>">
                             <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-instagram" viewbox="0 0 16 16">
                                 <title>Instagram</title>
                                 <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/>
                             </svg>
                         </a>
-                        <a class="link" href="#" data-tippy-content="@instagram_handle">
+                        <a class="link" href="#" data-tippy-content="<%= maba.wa %>">
                             <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-whatsapp" viewbox="0 0 16 16">
                                 <title>Whatsapp</title>
                                 <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
                             </svg>
                         </a>
                     </div>
+
+                    <div class="pt-6 pb-4">
+                        <a href="/edituser/<%= maba.id %>"><button class="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full">
+                            Edit Profile
+                        </button></a>
+                    </div>
+                    <div class="pt-6 pb-4">
+                        <a href="/logout"><button class="bg-red-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full">
+                            Logout
+                        </button></a>
+                    </div>
+
+                   
 
                     <!-- Use https://simpleicons.org/ to find the svg for your preferred product -->
 
@@ -95,7 +102,7 @@
                 class="w-full lg:w-2/5">
                 <!-- Big profile image for side bar (desktop) -->
                 <img
-                src="/public/img/ava/C.jpg" class="rounded-none lg:rounded-lg shadow-2xl hidden lg:block">
+                src="https://media.unpad.ac.id/photo/mahasiswa/140310/2021/<%= maba.npm %>.JPG" width="1500" class="rounded-none lg:rounded-lg shadow-2xl hidden lg:block">
             <!-- Image from: http://unsplash.com/photos/MP0IUfwrn0A -->
 
             </div>
