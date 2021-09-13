@@ -10,7 +10,8 @@ const MyObjectId = mongoose.Schema.Types.ObjectId;
 const mabaSchema = new mongoose.Schema({
     user: { 
         type: MyObjectId, 
-        ref: 'User'
+        ref: 'User',
+        unique: false
     },
     nama: String,
     npm: Number,
