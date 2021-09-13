@@ -38,7 +38,7 @@ router.get('/tugas', (req, res) => {
             else {
                 if (tugas){
                     Maba.findOne({user: req.user.id}, (err, maba) => {
-                        res.render('tugas', {tugas: tugas, maba: maba});
+                        res.render('tugas', {tugas: tugas, maba: maba, user: req.user});
                     });
                 }
                 else {
@@ -61,7 +61,7 @@ router.get('/tugas-detail/:id', (req, res) => {
             else {
                 if (tugas){
                     Maba.find({'file': {$ne: null}}, (err, peserta) => {
-                        res.render('tugas-detail', {tugas: tugas, maba: peserta, user: req.user.role});
+                        res.render('tugas-detail', {tugas: tugas, maba: peserta, user: req.user});
                     });
                 }
                 else {
@@ -84,7 +84,7 @@ router.get('/materi', (req, res) => {
             else {
                 if (tugas){
                     Maba.findOne({user: req.user.id}, (err, maba) => {
-                        res.render('materi', {tugas: tugas, maba: maba});
+                        res.render('materi', {tugas: tugas, maba: maba, user: req.user});
                     });
                 }
                 else {
@@ -107,7 +107,7 @@ router.get('/civitas', (req, res) => {
             else {
                 if (tugas){
                     Maba.findOne({user: req.user.id}, (err, maba) => {
-                        res.render('materi/materi_1', {tugas: tugas, maba: maba});
+                        res.render('materi/materi_1', {tugas: tugas, maba: maba, user: req.user});
                     });
                 }
                 else {
@@ -128,7 +128,7 @@ router.get('/user/:id', (req, res) => {
                 console.log(err);
             }
             else {
-                res.render('user', {maba: mabas});
+                res.render('user', {maba: mabas, user: req.user});
             }
         });
     }
@@ -144,7 +144,7 @@ router.get('/edituser/:id', (req, res) => {
                 console.log(err);
             }
             else {
-                res.render('edituser', {maba: mabas});
+                res.render('edituser', {maba: mabas, user: req.user});
             }
         });
     }
@@ -163,7 +163,7 @@ router.get('/home', (req, res) => {
             else {
                 if (tugas){
                     Maba.findOne({user: req.user.id}, (err, maba) => {
-                        res.render('home', {tugas: tugas, maba: maba});
+                        res.render('home', {tugas: tugas, maba: maba, user: req.user});
                     });
                 }
                 else {
@@ -190,14 +190,14 @@ router.get('/dashPanit', (req, res) => {
     if (req.isAuthenticated()){
         const role = req.user.role
         if (role.split('_')[0] !== 'maba'){
-            Maba.find({'kelompok': role.split('_')[1]}, (err, maba) => {
+            Maba.find({'kelompok': role}, (err, maba) => {
                 Tugas.find({}, (err, tugas) => {
                     if (err){
                         console.log(err);
                     }
                     else {
                         if (maba){
-                            res.render('panitia', {tugas: tugas, maba: maba, role: role, kelompok: role.split('_')[1], uname: req.user.username}); //ganti file yang akan dirender dengan nama file yang sesuai
+                            res.render('panitia', {tugas: tugas, maba: maba, role: role, kelompok: role.split('_')[1], uname: req.user.username, user: req.user}); //ganti file yang akan dirender dengan nama file yang sesuai
                         }
                         else {
                             req.flash('message', 'Tidak ada user!');
@@ -214,7 +214,7 @@ router.get('/dashPanit', (req, res) => {
                     }
                     else {
                         if (maba){
-                            res.render('panitia', {tugas: tugas, maba: maba, role: role, uname: req.user.username});
+                            res.render('panitia', {tugas: tugas, maba: maba, role: role, uname: req.user.username, user: req.user});
                         }
                         else {
                             req.flash('message', 'Tidak ada user!');

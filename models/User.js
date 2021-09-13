@@ -9,7 +9,9 @@ const userSchema = new mongoose.Schema({
         sparse: true 
     },
     password: String,
-    role: String
+    role: String,
+    npm: String,
+    angkatan: String
 });
 
 userSchema.plugin(passportLocalMongoose);

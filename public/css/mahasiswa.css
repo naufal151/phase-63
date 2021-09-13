@@ -324,3 +324,21 @@ body {
 	to {
 		-webkit-transform: translateY(-2560px);
 		        transform: translateY(-2560px); } }
+
+.upload-file {
+    background: antiquewhite;
+    padding: 25px;
+}.sent-button {
+    margin-top: 1.1em;
+    text-align: center;
+    }.sent-button button {
+        width: 100%;
+        padding: 5px;
+        border: 2px solid;
+        border-radius: 10px;
+        background: transparent;
+        transition-duration: 0.4s;
+    }.sent-button button:hover {
+        background: #555555;
+        color: white;
+    }

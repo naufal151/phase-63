@@ -7,13 +7,27 @@
         <li><a class="nav-button" href="https://phasehifi.com/home">Home</a></li>
         <li><a class="nav-button" href="https://phasehifi.com/materi">Materi</a></li>
         <li><a class="nav-button" href="https://phasehifi.com/tugas">Tugas</a></li>
-        <li><a class="nav-button" href="https://phasehifi.com/user">Profil</a></li>
+        <% if (user === "maba") { %>
         <li><a class="nav-button" href="#">Pertemuan</a></li>
-        <li><a class="nav-button profile" href="https://phasehifi.com/user">Profil</a></li>
+        <% } else { %>
+            <li><a class="nav-button" href="https://phasehifi.com/logout">Logout</a></li>
+            <% } %>
+
+        <% if (user === "maba") { %>
+            <li><a class="nav-button profile" href="https://phasehifi.com/user/<%= maba.id %>">Profil</a></li>
+        <% } else { %>
+            <li><a class="nav-button profile" href="https://phasehifi.com/dashPanit">Profil</a></li>
+            <% } %>
     </ul>
+    <% if (user.role === "maba") { %>
     <ul>
-        <li><a class="nav-avatar" href="https://phasehifi.com/user"><img src="img/ava/C.jpg" class="avatar" alt="Profile"></a></li>
+        <li><a class="nav-avatar" href="user/<%= maba.id %>"><img src="https://media.unpad.ac.id/photo/mahasiswa/140310/2021/<%= maba.npm %>.JPG" class="avatar" alt="Profile" style="object-fit: cover;" /></a></li>
     </ul>
+    <% } else { %>
+        <ul>
+            <li><a class="nav-avatar" href="https://phasehifi.com/dashPanit"><img src="https://media.unpad.ac.id/photo/mahasiswa/140310/<%= user.angkatan %>/<%= user.npm %>.JPG" class="avatar" alt="Profile" style="object-fit: cover;" /></a></li>
+        </ul>
+        <% } %>
     <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script>
         $(function () {

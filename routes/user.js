@@ -96,6 +96,8 @@ router.post('/registerPanit/reg', (req, res) => {
                     else {
                         passport.authenticate('local', {failureRedirect: '/registerPanit'})(req, res, () => {
                             user.role = req.body.role;
+                            user.npm = req.body.npm;
+                            user.angkatan = req.body.angkatan;
                             user.save(() => {
                                 res.redirect('/dashPanit');
                             });
@@ -121,8 +123,13 @@ router.post('/profile', (req, res) => {
         desc: req.body.desc
     });
 
-    userProfile.save(() => {
-        res.redirect('/home');
+    userProfile.save((err) => {
+        if (err){
+            res.send(err);
+        }
+        else {
+            res.redirect('/home');
+        }
     });
 });
 

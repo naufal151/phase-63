@@ -60,9 +60,11 @@
                                 <% maba.forEach((tugasList)=> { %>
                                     <p>Nama: <%= tugasList.nama %> </p>
                                     <p>File : <a href="/dashPanit/<%= tugasList.npm %>@<%= tugasList.file.date %>.png">Download</a></p>
-                                    <p>Status: <%= tugasList.file[0].status %> </p>
+                                    <p>Status: <%= tugasList.file.status %> </p>
                                 <% }) %>
-                            <% } %>   
+                            <% } else { %>
+                                <h2>Belum ada yang mengumpulkan tugas!</h2>
+                                <% } %>   
                         </div>
                     </div>
                 </div>
@@ -85,9 +87,13 @@
                             <div class="flex-grow">
                                 <p class="leading-relaxed text-base"> Deadline: <b style="color: red;"> <%= tugas.deadline.toDateString() %>, <%= tugas.deadline.getHours() %>:<%= tugas.deadline.getMinutes() %> </b></p>
                                 <p class="leading-relaxed text-base"> <%= tugas.deskripsi %> </p>
-                                <form action="/mabaUpload/<%= tugas.id %>" method="post" enctype="multipart/form-data">
-                                    <input type="file" name="file">
-                                    <button type="submit">Kirim</button>
+                                <form action="/mabaUpload/<%= tugas.id %>" method="post" enctype="multipart/form-data" class="upload-file">
+                                    <div class="file-upload">
+                                        <input type="file" name="file">
+                                    </div>
+                                    <div class="sent-button">
+                                        <button type="submit">Kirim</button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
