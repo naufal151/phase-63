@@ -123,8 +123,13 @@ router.post('/profile', (req, res) => {
         desc: req.body.desc
     });
 
-    userProfile.save(() => {
-        res.redirect('/home');
+    userProfile.save((err) => {
+        if (err){
+            res.send(err);
+        }
+        else {
+            res.redirect('/home');
+        }
     });
 });
 
