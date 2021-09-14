@@ -8,7 +8,11 @@ const Tugas = require('../models/Tugas');
 
 // route untuk menampilkan root route landing page
 router.get('/', (req, res) => {
-    res.render('index', {loggedIn: req.isAuthenticated()});
+    if (req.isAuthenticated()){
+        res.redirect('/home');
+    }else{
+        res.render('index', {loggedIn: req.isAuthenticated()});
+    }
 });
 
 // route untuk menampilkan halaman login (kalo ada)
