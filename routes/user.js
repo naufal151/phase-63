@@ -139,6 +139,53 @@ router.get('/logout', (req, res) => {
     res.redirect('/');
 });
 
+// route untuk ganti dari password lama ke password baru
+router.post('/changePass', (req, res) => {
+    User.findById(req.user.id, (err, user) => {
+        if (err){
+            res.send('Internal Server Error 500');
+        }
+        else {
+            if (user){
+                user.changePassword(req.body.oldPass, req.body.newPass, (err) => {
+                    if (err){
+                        res.send('Cannot change password now, Internal Server Error 500');
+                        console.log(err);
+                    }
+                    else {
+                        res.redirect('/home');
+                    }
+                });
+            }
+        }
+    });
+});
+
+// route untuk lupa password
+router.post('/forgotPass', (req, res) => {
+    User.findByUsername(req.body.username, (err, user) => {
+        if (err){
+            res.send('Internal Server Error 500');
+            console.log(err);
+        }
+        else {
+            if (user){
+                user.setPassword(req.body.password, (err) => {
+                    if (err){
+                        res.send('Internal Server Error 500');
+                        console.log(err);
+                    }
+                    else {
+                        user.save(() => {
+                            res.redirect('/');
+                        });
+                    }
+                });
+            }
+        }
+    });
+});
+
 // buat skema penyimpanan file tugas maba dengan multer
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
