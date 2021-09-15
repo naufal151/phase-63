@@ -148,6 +148,29 @@ router.get('/badan-kelengkapan', (req, res) => {
     }
 });
 
+router.get('/pengenalan-hifi', (req, res) => {
+    if (req.isAuthenticated()){
+        Tugas.find({}, (err, tugas) => {
+            if (err){
+                console.log(err);
+            }
+            else {
+                if (tugas){
+                    Maba.findOne({user: req.user.id}, (err, maba) => {
+                        res.render('materi/materi_3', {tugas: tugas, maba: maba, user: req.user});
+                    });
+                }
+                else {
+                    req.flash('message', 'Tidak ada tugas!');
+                }
+            }
+        });
+    }
+    else {
+        res.redirect('/login');
+    }
+});
+
 router.get('/user/:id', (req, res) => {
     if (req.isAuthenticated()){
         Maba.findById(req.params.id, (err, mabas) => {
