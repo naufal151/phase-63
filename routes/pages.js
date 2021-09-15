@@ -177,12 +177,19 @@ router.get('/home', (req, res) => {
     }
 });
 
-router.get('/tes', (req, res) => {
+// route untuk ganti password
+router.get('/changePass', (req, res) => {
     if (req.isAuthenticated()){
-        Maba.findOne({user: req.user.id}, (err, maba) => {
-            res.send(maba.file[1].status);
-        });
+        res.render('changePass');
     }
+    else {
+        res.redirect('/');
+    }
+});
+
+// route untuk lupa password
+router.get('/forgotPass', (req, res) => {
+    res.render('forgotPass');
 });
 
 // route untuk menampilkan halaman dashboard untuk panitia

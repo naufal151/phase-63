@@ -1,0 +1,14 @@
+<!-- contoh form buat ganti password -->
+
+<%- include('partials/header') %>
+
+<h1>Ganti Password</h1><br>
+<form action="/changePass" method="post">
+    <label for="">Current Password: </label>
+    <input type="text" name="oldPass"><br>
+    <label for="">New Password: </label>
+    <input type="text" name="newPass"><br>
+    <button type="submit">Change Pass</button>
+</form>
+
+<%- include('partials/footer') %>
