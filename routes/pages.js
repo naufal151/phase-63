@@ -8,7 +8,11 @@ const Tugas = require('../models/Tugas');
 
 // route untuk menampilkan root route landing page
 router.get('/', (req, res) => {
-    res.render('index', {loggedIn: req.isAuthenticated()});
+    if (req.isAuthenticated()){
+        res.redirect('/home');
+    }else{
+        res.render('index', {loggedIn: req.isAuthenticated()});
+    }
 });
 
 // route untuk menampilkan halaman login (kalo ada)
@@ -108,6 +112,29 @@ router.get('/civitas', (req, res) => {
                 if (tugas){
                     Maba.findOne({user: req.user.id}, (err, maba) => {
                         res.render('materi/materi_1', {tugas: tugas, maba: maba, user: req.user});
+                    });
+                }
+                else {
+                    req.flash('message', 'Tidak ada tugas!');
+                }
+            }
+        });
+    }
+    else {
+        res.redirect('/login');
+    }
+});
+
+router.get('/badan-kelengkapan', (req, res) => {
+    if (req.isAuthenticated()){
+        Tugas.find({}, (err, tugas) => {
+            if (err){
+                console.log(err);
+            }
+            else {
+                if (tugas){
+                    Maba.findOne({user: req.user.id}, (err, maba) => {
+                        res.render('materi/materi_2', {tugas: tugas, maba: maba, user: req.user});
                     });
                 }
                 else {
