@@ -254,6 +254,51 @@ router.get('/dashPanit', (req, res) => {
     }
 });
 
+router.get('/file-download', (req, res) => {
+    if (req.isAuthenticated()){
+        const role = req.user.role
+        if (role.split('_')[0] !== 'maba'){
+            Maba.find({'kelompok': role}, (err, maba) => {
+                Tugas.find({}, (err, tugas) => {
+                    if (err){
+                        console.log(err);
+                    }
+                    else {
+                        if (maba){
+                            res.render('file-download', {tugas: tugas, maba: maba, role: role, kelompok: role.split('_')[1], uname: req.user.username, user: req.user}); //ganti file yang akan dirender dengan nama file yang sesuai
+                        }
+                        else {
+                            req.flash('message', 'Tidak ada user!');
+                        }
+                    }
+                });
+            });
+        }
+        else if (role === 'pengembangan'){
+            Maba.find({}, (err, maba) => {
+                Tugas.find({}, (err, tugas) => {
+                    if (err){
+                        console.log(err);
+                    }
+                    else {
+                        if (maba){
+                            res.render('file-download', {tugas: tugas, maba: maba, role: role, uname: req.user.username, user: req.user});
+                        }
+                        else {
+                            req.flash('message', 'Tidak ada user!');
+                        }
+                    }
+                });
+            });
+        }else {
+            res.redirect('/home');
+        }
+    }
+    else {
+        res.redirect('/login');
+    }
+});
+
 // route untuk menampilkan tugas maba
 router.get('/dashPanit/:filename', (req, res) => {
     if (req.isAuthenticated()){
