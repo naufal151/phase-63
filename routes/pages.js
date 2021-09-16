@@ -228,12 +228,19 @@ router.get('/home', (req, res) => {
 });
 
 // route untuk ganti password
-router.get('/changePass', (req, res) => {
+router.get('/change-password/:id', (req, res) => {
     if (req.isAuthenticated()){
-        res.render('changePass');
+        Maba.findById(req.params.id, (err, mabas) => {
+            if (err){
+                console.log(err);
+            }
+            else {
+                res.render('editpassword', {maba: mabas, user: req.user});
+            }
+        });
     }
     else {
-        res.redirect('/');
+        res.redirect('/login');
     }
 });
 
