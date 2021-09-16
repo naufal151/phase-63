@@ -148,7 +148,7 @@ router.get('/badan-kelengkapan', (req, res) => {
     }
 });
 
-router.get('/pengenalan-hifi', (req, res) => {
+router.get('/pengenalanHifi', (req, res) => {
     if (req.isAuthenticated()){
         Tugas.find({}, (err, tugas) => {
             if (err){
