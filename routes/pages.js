@@ -261,7 +261,7 @@ router.get('/dashPanit', (req, res) => {
                     }
                     else {
                         if (maba){
-                            res.render('panitia', {tugas: tugas, maba: maba, role: role, kelompok: role.split('_')[1], uname: req.user.username, user: req.user}); //ganti file yang akan dirender dengan nama file yang sesuai
+                            res.render('panitia', {tugas: tugas, maba: maba, role: role, uname: req.user.username, user: req.user}); //ganti file yang akan dirender dengan nama file yang sesuai
                         }
                         else {
                             req.flash('message', 'Tidak ada user!');
@@ -306,7 +306,7 @@ router.get('/file-download', (req, res) => {
                     }
                     else {
                         if (maba){
-                            res.render('file-download', {tugas: tugas, maba: maba, role: role, kelompok: role.split('_')[1], uname: req.user.username, user: req.user}); //ganti file yang akan dirender dengan nama file yang sesuai
+                            res.render('file-download', {tugas: tugas, maba: maba, role: role, uname: req.user.username, user: req.user}); //ganti file yang akan dirender dengan nama file yang sesuai
                         }
                         else {
                             req.flash('message', 'Tidak ada user!');
@@ -341,7 +341,7 @@ router.get('/file-download', (req, res) => {
 });
 
 // route untuk menampilkan tugas maba
-router.get('/dashPanit/:filename', (req, res) => {
+router.get('/file-download/:filename', (req, res) => {
     if (req.isAuthenticated()){
         if (req.user.role === 'pengembangan' || req.user.role.split('_')[0] === 'asesor' || req.user.role !== 'maba'){
             res.sendFile(__dirname + '/uploads/' + req.params['filename']);

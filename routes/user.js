@@ -193,14 +193,16 @@ const storage = multer.diskStorage({
     },
     filename: (req, file, cb) => {
         Maba.findOne({user: req.user.id}, (err, maba) => {
-            if (err){
-                console.log(err);
-            }
-            else {
-                if (maba){
-                    cb(null, maba.npm + '@' + new Date().getFullYear() + '-' + (new Date().getMonth()+1) + '-' + new Date().getDate() + '@' + new Date().getUTCHours() + '-' + new Date().getUTCMinutes() + path.extname(file.originalname));
+            Tugas.findById(req.params.id, (err, tugas) => {
+                if (err){
+                    console.log(err);
                 }
-            }
+                else {
+                    if (maba){
+                        cb(null, maba.npm + '@' + tugas.judul + '@' + new Date().getFullYear() + '-' + (new Date().getMonth()+1) + '-' + new Date().getDate() + '@' + new Date().getUTCHours() + '-' + new Date().getUTCMinutes() + path.extname(file.originalname));
+                    }
+                }
+            });
         });
     }
 });
@@ -208,7 +210,7 @@ const storage = multer.diskStorage({
 const upload = multer({storage: storage});
 
 // route untuk upload tugas maba
-router.post('/mabaUpload', upload.single('file'), (req, res, next) => {
+router.post('/mabaUpload/:id', upload.single('file'), (req, res, next) => {
     const role = req.user.role;
 
     if (role === 'maba'){
@@ -226,17 +228,18 @@ router.post('/mabaUpload', upload.single('file'), (req, res, next) => {
                         contentType: contentType,
                         date: new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate(),
                         time: new Date().getUTCHours() + '-' + new Date().getUTCMinutes(),
-                        status: 'diperiksa'
+                        status: 'diperiksa',
+                        judul: req.body.judul
                     }
 
                     user.file.push(file);
                     user.save(() => {
-                        res.redirect('/home');
+                        res.redirect('/tugas');
                     });
                 }
                 else {
                     req.flash('message', 'Gagal upload tugas!');
-                    res.redirect('/home');
+                    res.redirect('/tugas');
                 }
             }
         });

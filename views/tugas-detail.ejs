@@ -98,7 +98,7 @@
                                 <form action="/mabaUpload/<%= tugas.id %>" method="post" enctype="multipart/form-data" class="upload-file">
                                     <div class="file-upload">
                                         <input type="file" name="file">
-                                        <input type="hidden" name="id" value="<%= tugas.id %>">
+                                        <input type="hidden" name="judul" value="<%= tugas.judul %>" style="visibility: hidden;">
                                     </div>
                                     <div class="sent-button">
                                         <button type="submit">Kirim</button>

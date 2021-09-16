@@ -27,7 +27,8 @@ const mabaSchema = new mongoose.Schema({
         contentType: String,
         date: String,
         time: String,
-        status: String
+        status: String,
+        judul: String
     }]
 });
 

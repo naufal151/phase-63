@@ -196,7 +196,7 @@
                                                 <th class="middle-align">Judul</th>
                                                 <th class="middle-align">Jenis</th>
                                                 <th class="middle-align">Deadline</th>
-                                                <th class="middle-align">Rincian</th>
+                                                <th class="middle-align">Unduh File</th>
                                             </tr>
                                         </thead>
                                         <tbody class="table-body">
@@ -253,7 +253,7 @@
                                                             </span></td>
 
                                                         <td class="align-middle text-dark middle-align">
-                                                            <a href="/tugas-detail/<%= tugasMaba.id %>"
+                                                            <a href="/file-download/"
                                                                 class="text-inherit">Open tab</a>
                                                         </td>
                                                     </tr>
@@ -285,7 +285,7 @@
                                                 <th class="middle-align">Name</th>
                                                 <th>Alamat</th>
                                                 <th>Whatsapp</th>
-                                                <th>File Tugas</th>
+                                                <!-- <th>File Tugas</th> -->
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -315,7 +315,7 @@
                                                         <td class="align-middle">
                                                             <%= mabas.wa %>
                                                         </td>
-                                                        <td class="align-middle">
+                                                        <!-- <td class="align-middle">
                                                             <% if (mabas.file.length !== 0){ %>
                                                                 <% mabas.file.forEach((file, index) => { %>
                                                                     <a href="/dashPanit/<%= mabas.npm %>@<%= file.date %>@<%= file.time %>.pdf" target="_blank">Tugas <%= index + 1 %></a>
@@ -323,7 +323,7 @@
                                                             <% } else { %>
                                                                 <p>Belum ada tugas yang dikumpulkan</p>
                                                             <% } %>
-                                                        </td>
+                                                        </td> -->
                                                     </tr>
                                                     <% }) %>
                                                         <% } else { %>

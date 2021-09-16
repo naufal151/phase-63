@@ -28,8 +28,8 @@
 
         <!-- Theme CSS -->
         <!-- build:css @@webRoot/assets/css/theme.min.css -->
-        <link rel="stylesheet" href="css/theme.css">
         <link rel="stylesheet" href="css/mahasiswa.css">
+        <link rel="stylesheet" href="css/theme.css">
         
         <!-- endbuild -->
 
@@ -55,8 +55,11 @@
                         <div class="col-xl-12 col-lg-12">
                             <div class="card h-100">
                                 <!-- card header  -->
-                                <div class="card-header bg-white border-bottom-0 py-4">
-                                    <h4 class="mb-0">List File Maba</h4>
+                                <div class="card-header project-header bg-white border-bottom-0 py-4">
+                                    <h4 class="mb-0">Active Projects</h4>
+                                    <div>
+                                        <a href="https://phasehifi.com/dashPanit/"><button type="button" class="add-project" id="add-project">Back to Dashboard</button></a>
+                                    </div>
                                 </div>
                                 <!-- table  -->
                                         <div class="table-responsive">
@@ -64,8 +67,13 @@
                                                 <thead class="table-light table-head">
                                                     <tr class="table-row">
                                                         <th class="middle-align">Nama</th>
-                                                        <th>Status</th>
-                                                        <th>Download</th>
+                                                        <% if (maba.length !==0) { %>
+                                                            <% for (var i =1; i <= tugas.length;  i++ ) { %>
+                                                        <th class="middle-align">Judul</th>
+                                                        <th class="middle-align">Status</th>
+                                                        <th class="middle-align">Download</th>
+                                                            <% } %>
+                                                        <% } %>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -87,13 +95,19 @@
                                                                     </p>
                                                                 </div>
                                                             </div>
-                                                        </td>
+                                                        </td>           
+
                                                         <% mabas.file.forEach((tugas) => { %>
+
+                                                         <td class="align-middle">
+                                                            <%= tugas.judul %>
+                                                        </td>
+
                                                         <td class="align-middle">
                                                             <%= tugas.status %>
                                                         </td>
                                                         
-                                                        <td class="align-middle"><a href="/routes/uploads/<%= mabas.npm %>@<%= tugas.date %>.pdf">Lihat hasil</a></td>
+                                                        <td class="align-middle"><a href="/file-download/<%= mabas.npm %>@<%= tugas.judul %>@<%= tugas.date %>@<%= tugas.time %>.pdf">Lihat hasil</a></td>
                                                         <% }) %>
                                                     </tr>
                                                     <% }) %>
