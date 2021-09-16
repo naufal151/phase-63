@@ -38,7 +38,7 @@
     <section class="text-gray-600 body-font">
         <div class="container px-5 py-8 mx-auto">
             <div class="flex justify-center flex-wrap -m-4">
-                <% if (user !== "maba") { %>
+                <% if (user.role !== "maba") { %>
                 <div class="p-4 md:w-1/3">  
                     <!-- Start Loop Here -->
                     <div class="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
@@ -56,7 +56,15 @@
                         <div class="flex-grow">
                             <p class="leading-relaxed text-base"> Deadline: <b style="color: red;"> <%= tugas.deadline.toDateString() %>, <%= tugas.deadline.getHours() %>:<%= tugas.deadline.getMinutes() %> </b></p>
                             <p class="leading-relaxed text-base"> <%= tugas.deskripsi %> </p>
-                            <% if (tugas.length !==0) { %>
+                            <% if (user.role === "maba"){ %>
+                                <form action="/mabaUpload" method="post" enctype="multipart/form-data">
+                                    <label for="">Upload File: </label>
+                                    <input type="file" name="file" id="">
+                                    <button type="submit">Kumpulkan</button>
+                                </form>
+                            <% } %>
+                            
+                            <!-- <% if (tugas.length !==0) { %>
                                 <% maba.forEach((tugasList)=> { %>
                                     <p>Nama: <%= tugasList.nama %> </p>
                                     <p>File : <a href="/dashPanit/<%= tugasList.npm %>@<%= tugasList.file.date %>.png">Download</a></p>
@@ -64,12 +72,12 @@
                                 <% }) %>
                             <% } else { %>
                                 <h2>Belum ada yang mengumpulkan tugas!</h2>
-                                <% } %>   
+                                <% } %>    -->
                         </div>
                     </div>
                 </div>
                 <% } %>
-                <% if (user === "maba") { %>
+                <% if (user.role === "maba") { %>
                     <div class="p-4 md:w-1/3">  
                         <!-- Start Loop Here -->
                         <div class="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
@@ -90,6 +98,7 @@
                                 <form action="/mabaUpload/<%= tugas.id %>" method="post" enctype="multipart/form-data" class="upload-file">
                                     <div class="file-upload">
                                         <input type="file" name="file">
+                                        <input type="hidden" name="judul" value="<%= tugas.judul %>" style="visibility: hidden;">
                                     </div>
                                     <div class="sent-button">
                                         <button type="submit">Kirim</button>

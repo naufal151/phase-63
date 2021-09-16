@@ -148,6 +148,29 @@ router.get('/badan-kelengkapan', (req, res) => {
     }
 });
 
+router.get('/pengenalanHifi', (req, res) => {
+    if (req.isAuthenticated()){
+        Tugas.find({}, (err, tugas) => {
+            if (err){
+                console.log(err);
+            }
+            else {
+                if (tugas){
+                    Maba.findOne({user: req.user.id}, (err, maba) => {
+                        res.render('materi/materi_3', {tugas: tugas, maba: maba, user: req.user});
+                    });
+                }
+                else {
+                    req.flash('message', 'Tidak ada tugas!');
+                }
+            }
+        });
+    }
+    else {
+        res.redirect('/login');
+    }
+});
+
 router.get('/user/:id', (req, res) => {
     if (req.isAuthenticated()){
         Maba.findById(req.params.id, (err, mabas) => {
@@ -204,12 +227,26 @@ router.get('/home', (req, res) => {
     }
 });
 
-router.get('/tes', (req, res) => {
+// route untuk ganti password
+router.get('/change-password/:id', (req, res) => {
     if (req.isAuthenticated()){
-        Maba.findOne({user: req.user.id}, (err, maba) => {
-            res.send(maba.file[1].status);
+        Maba.findById(req.params.id, (err, mabas) => {
+            if (err){
+                console.log(err);
+            }
+            else {
+                res.render('editpassword', {maba: mabas, user: req.user});
+            }
         });
     }
+    else {
+        res.redirect('/login');
+    }
+});
+
+// route untuk lupa password
+router.get('/forgotPass', (req, res) => {
+    res.render('forgotPass');
 });
 
 // route untuk menampilkan halaman dashboard untuk panitia
@@ -224,7 +261,7 @@ router.get('/dashPanit', (req, res) => {
                     }
                     else {
                         if (maba){
-                            res.render('panitia', {tugas: tugas, maba: maba, role: role, kelompok: role.split('_')[1], uname: req.user.username, user: req.user}); //ganti file yang akan dirender dengan nama file yang sesuai
+                            res.render('panitia', {tugas: tugas, maba: maba, role: role, uname: req.user.username, user: req.user}); //ganti file yang akan dirender dengan nama file yang sesuai
                         }
                         else {
                             req.flash('message', 'Tidak ada user!');
@@ -258,8 +295,53 @@ router.get('/dashPanit', (req, res) => {
     }
 });
 
+router.get('/file-download', (req, res) => {
+    if (req.isAuthenticated()){
+        const role = req.user.role
+        if (role.split('_')[0] !== 'maba'){
+            Maba.find({'kelompok': role}, (err, maba) => {
+                Tugas.find({}, (err, tugas) => {
+                    if (err){
+                        console.log(err);
+                    }
+                    else {
+                        if (maba){
+                            res.render('file-download', {tugas: tugas, maba: maba, role: role, uname: req.user.username, user: req.user}); //ganti file yang akan dirender dengan nama file yang sesuai
+                        }
+                        else {
+                            req.flash('message', 'Tidak ada user!');
+                        }
+                    }
+                });
+            });
+        }
+        else if (role === 'pengembangan'){
+            Maba.find({}, (err, maba) => {
+                Tugas.find({}, (err, tugas) => {
+                    if (err){
+                        console.log(err);
+                    }
+                    else {
+                        if (maba){
+                            res.render('file-download', {tugas: tugas, maba: maba, role: role, uname: req.user.username, user: req.user});
+                        }
+                        else {
+                            req.flash('message', 'Tidak ada user!');
+                        }
+                    }
+                });
+            });
+        }else {
+            res.redirect('/home');
+        }
+    }
+    else {
+        res.redirect('/login');
+    }
+});
+
 // route untuk menampilkan tugas maba
-router.get('/dashPanit/:filename', (req, res) => {
+router.get('/file-download/:filename', (req, res) => {
     if (req.isAuthenticated()){
         if (req.user.role === 'pengembangan' || req.user.role.split('_')[0] === 'asesor' || req.user.role !== 'maba'){
             res.sendFile(__dirname + '/uploads/' + req.params['filename']);

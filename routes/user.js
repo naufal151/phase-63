@@ -139,6 +139,53 @@ router.get('/logout', (req, res) => {
     res.redirect('/');
 });
 
+// route untuk ganti dari password lama ke password baru
+router.post('/changePass', (req, res) => {
+    User.findById(req.user.id, (err, user) => {
+        if (err){
+            res.send('Internal Server Error 500');
+        }
+        else {
+            if (user){
+                user.changePassword(req.body.oldPass, req.body.newPass, (err) => {
+                    if (err){
+                        res.send('Cannot change password now, Internal Server Error 500');
+                        console.log(err);
+                    }
+                    else {
+                        res.redirect('/home');
+                    }
+                });
+            }
+        }
+    });
+});
+
+// route untuk lupa password
+router.post('/forgotPass', (req, res) => {
+    User.findByUsername(req.body.username, (err, user) => {
+        if (err){
+            res.send('Internal Server Error 500');
+            console.log(err);
+        }
+        else {
+            if (user){
+                user.setPassword(req.body.password, (err) => {
+                    if (err){
+                        res.send('Internal Server Error 500');
+                        console.log(err);
+                    }
+                    else {
+                        user.save(() => {
+                            res.redirect('/');
+                        });
+                    }
+                });
+            }
+        }
+    });
+});
+
 // buat skema penyimpanan file tugas maba dengan multer
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -146,14 +193,16 @@ const storage = multer.diskStorage({
     },
     filename: (req, file, cb) => {
         Maba.findOne({user: req.user.id}, (err, maba) => {
-            if (err){
-                console.log(err);
-            }
-            else {
-                if (maba){
-                    cb(null, maba.npm + '@' + new Date().getFullYear() + '-' + (new Date().getMonth()+1) + '-' + new Date().getDate() + path.extname(file.originalname));
+            Tugas.findById(req.params.id, (err, tugas) => {
+                if (err){
+                    console.log(err);
                 }
-            }
+                else {
+                    if (maba){
+                        cb(null, maba.npm + '@' + tugas.judul + '@' + new Date().getFullYear() + '-' + (new Date().getMonth()+1) + '-' + new Date().getDate() + '@' + new Date().getUTCHours() + '-' + new Date().getUTCMinutes() + path.extname(file.originalname));
+                    }
+                }
+            });
         });
     }
 });
@@ -175,22 +224,22 @@ router.post('/mabaUpload/:id', upload.single('file'), (req, res, next) => {
             else {
                 if (user){
                     const file = {
-                        tugas: req.params.id,
                         data: data,
                         contentType: contentType,
                         date: new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate(),
-                        time: new Date().getHours() + ':' + new Date().getMinutes() + ':' + new Date().getSeconds(),
-                        status: 'diperiksa'
+                        time: new Date().getUTCHours() + '-' + new Date().getUTCMinutes(),
+                        status: 'diperiksa',
+                        judul: req.body.judul
                     }
 
                     user.file.push(file);
                     user.save(() => {
-                        res.redirect('/home');
+                        res.redirect('/tugas');
                     });
                 }
                 else {
                     req.flash('message', 'Gagal upload tugas!');
-                    res.redirect('/home');
+                    res.redirect('/tugas');
                 }
             }
         });

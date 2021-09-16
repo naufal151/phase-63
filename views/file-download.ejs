@@ -1,0 +1,151 @@
+<head>
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Phase 63</title>
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Favicon icon-->
+        <link rel="shortcut icon" type="image/x-icon" href="img/Logo_2.png">
+
+        <!-- Libs CSS -->
+
+        <link rel="stylesheet" href="prismjs/themes/prism.css">
+        <link rel="stylesheet" href="prismjs/plugins/line-numbers/prism-line-numbers.css">
+        <link rel="stylesheet" href="prismjs/plugins/toolbar/prism-toolbar.css">
+        <link rel="stylesheet" href="bootstrap-icons/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="dropzone/dist/dropzone.css">
+        <link href="@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" />
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.css">
+
+        <!-- Theme CSS -->
+        <!-- build:css @@webRoot/assets/css/theme.min.css -->
+        <link rel="stylesheet" href="css/mahasiswa.css">
+        <link rel="stylesheet" href="css/theme.css">
+        
+        <!-- endbuild -->
+
+        <!-- Jquery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+        <title>List File Maba</title>
+
+    </head>
+
+<body>
+    <div id="db-wrapper">
+        <!-- Page content -->
+        <div id="page-content">
+            <%- include('partials/header') %>
+                <!-- Container fluid -->
+                <div class="bg-primary pt-10 pb-21"></div>
+                <div class="container-fluid mt-n22 px-6">
+                    <!-- row  -->
+                    <div class="row my-6">
+
+                        <!-- card  -->
+                        <div class="col-xl-12 col-lg-12">
+                            <div class="card h-100">
+                                <!-- card header  -->
+                                <div class="card-header project-header bg-white border-bottom-0 py-4">
+                                    <h4 class="mb-0">Active Projects</h4>
+                                    <div>
+                                        <a href="https://phasehifi.com/dashPanit/"><button type="button" class="add-project" id="add-project">Back to Dashboard</button></a>
+                                    </div>
+                                </div>
+                                <!-- table  -->
+                                        <div class="table-responsive">
+                                            <table class="table text-nowrap">
+                                                <thead class="table-light table-head">
+                                                    <tr class="table-row">
+                                                        <th class="middle-align">Nama</th>
+                                                        <% if (maba.length !==0) { %>
+                                                            <% for (var i =1; i <= tugas.length;  i++ ) { %>
+                                                        <th class="middle-align">Judul</th>
+                                                        <th class="middle-align">Status</th>
+                                                        <th class="middle-align">Download</th>
+                                                            <% } %>
+                                                        <% } %>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <% if (maba.length !==0) { %>
+                                                        <% maba.forEach((mabas)=> { %>
+                                                    <tr>
+                                                        <td class="align-middle">
+                                                            <div class="d-flex align-items-center">
+                                                                <div>
+                                                                    <img src="https://media.unpad.ac.id/photo/mahasiswa/140310/2021/<%= mabas.npm %>.JPG" alt=""
+                                                                        class="avatar-md avatar rounded-circle" style="object-fit: cover;">
+                                                                </div>
+                                                                <div class="ms-3 lh-1">
+                                                                    <h5 class="fw-bold mb-1">
+                                                                        <%= mabas.nama %>
+                                                                    </h5>
+                                                                    <p class="mb-0">
+                                                                        <%= mabas.npm %>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </td>           
+
+                                                        <% mabas.file.forEach((tugas) => { %>
+
+                                                         <td class="align-middle">
+                                                            <%= tugas.judul %>
+                                                        </td>
+
+                                                        <td class="align-middle">
+                                                            <%= tugas.status %>
+                                                        </td>
+                                                        
+                                                        <td class="align-middle"><a href="/file-download/<%= mabas.npm %>@<%= tugas.judul %>@<%= tugas.date %>@<%= tugas.time %>.pdf">Lihat hasil</a></td>
+                                                        <% }) %>
+                                                    </tr>
+                                                    <% }) %>
+                                                    <% } else { %>
+                                                        <h3 class="announcement">No file has been uploaded</h3>
+                                                        <% } %>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <%- include('partials/scripts') %>
+
+    <script>
+        function formPopup() {
+            var popup = document.getElementById("popup-addproject");
+            popup.classList.toggle("show");
+        }
+        function formClose() {
+            var popup = document.getElementById("popup-addproject");
+            popup.classList.remove("show");
+        }
+        function formPopupDelete() {
+            var popup = document.getElementById("popup-delete");
+            popup.classList.toggle("show");
+        }
+        function formCloseDelete() {
+            var popup = document.getElementById("popup-delete");
+            popup.classList.remove("show");
+        }
+    </script>
+
+</body>
+
+</html>
