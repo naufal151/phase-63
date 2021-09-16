@@ -285,6 +285,7 @@
                                                 <th class="middle-align">Name</th>
                                                 <th>Alamat</th>
                                                 <th>Whatsapp</th>
+                                                <th>File Tugas</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -313,6 +314,15 @@
                                                         </td>
                                                         <td class="align-middle">
                                                             <%= mabas.wa %>
+                                                        </td>
+                                                        <td class="align-middle">
+                                                            <% if (mabas.file.length !== 0){ %>
+                                                                <% mabas.file.forEach((file, index) => { %>
+                                                                    <a href="/dashPanit/<%= mabas.npm %>@<%= file.date %>@<%= file.time %>.pdf" target="_blank">Tugas <%= index + 1 %></a>
+                                                                <% }) %>
+                                                            <% } else { %>
+                                                                <p>Belum ada tugas yang dikumpulkan</p>
+                                                            <% } %>
                                                         </td>
                                                     </tr>
                                                     <% }) %>

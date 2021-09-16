@@ -198,7 +198,7 @@ const storage = multer.diskStorage({
             }
             else {
                 if (maba){
-                    cb(null, maba.npm + '@' + new Date().getFullYear() + '-' + (new Date().getMonth()+1) + '-' + new Date().getDate() + '@' + new Date().getHours()+ new Date().getMinutes() + new Date().getSeconds() + path.extname(file.originalname));
+                    cb(null, maba.npm + '@' + new Date().getFullYear() + '-' + (new Date().getMonth()+1) + '-' + new Date().getDate() + '@' + new Date().getUTCHours() + '-' + new Date().getUTCMinutes() + path.extname(file.originalname));
                 }
             }
         });
@@ -208,7 +208,7 @@ const storage = multer.diskStorage({
 const upload = multer({storage: storage});
 
 // route untuk upload tugas maba
-router.post('/mabaUpload/:id', upload.single('file'), (req, res, next) => {
+router.post('/mabaUpload', upload.single('file'), (req, res, next) => {
     const role = req.user.role;
 
     if (role === 'maba'){
@@ -222,11 +222,10 @@ router.post('/mabaUpload/:id', upload.single('file'), (req, res, next) => {
             else {
                 if (user){
                     const file = {
-                        tugas: req.params.id,
                         data: data,
                         contentType: contentType,
                         date: new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate(),
-                        time: new Date().getHours()+ new Date().getMinutes() + new Date().getSeconds(),
+                        time: new Date().getUTCHours() + '-' + new Date().getUTCMinutes(),
                         status: 'diperiksa'
                     }
 
