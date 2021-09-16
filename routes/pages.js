@@ -8,7 +8,11 @@ const Tugas = require('../models/Tugas');
 
 // route untuk menampilkan root route landing page
 router.get('/', (req, res) => {
-    res.render('index', {loggedIn: req.isAuthenticated()});
+    if (req.isAuthenticated()){
+        res.redirect('/home');
+    }else{
+        res.render('index', {loggedIn: req.isAuthenticated()});
+    }
 });
 
 // route untuk menampilkan halaman login (kalo ada)
@@ -144,6 +148,29 @@ router.get('/badan-kelengkapan', (req, res) => {
     }
 });
 
+router.get('/pengenalanHifi', (req, res) => {
+    if (req.isAuthenticated()){
+        Tugas.find({}, (err, tugas) => {
+            if (err){
+                console.log(err);
+            }
+            else {
+                if (tugas){
+                    Maba.findOne({user: req.user.id}, (err, maba) => {
+                        res.render('materi/materi_3', {tugas: tugas, maba: maba, user: req.user});
+                    });
+                }
+                else {
+                    req.flash('message', 'Tidak ada tugas!');
+                }
+            }
+        });
+    }
+    else {
+        res.redirect('/login');
+    }
+});
+
 router.get('/user/:id', (req, res) => {
     if (req.isAuthenticated()){
         Maba.findById(req.params.id, (err, mabas) => {
@@ -200,12 +227,19 @@ router.get('/home', (req, res) => {
     }
 });
 
-router.get('/tes', (req, res) => {
+// route untuk ganti password
+router.get('/changePass', (req, res) => {
     if (req.isAuthenticated()){
-        Maba.findOne({user: req.user.id}, (err, maba) => {
-            res.send(maba.file[1].status);
-        });
+        res.render('changePass');
     }
+    else {
+        res.redirect('/');
+    }
+});
+
+// route untuk lupa password
+router.get('/forgotPass', (req, res) => {
+    res.render('forgotPass');
 });
 
 // route untuk menampilkan halaman dashboard untuk panitia

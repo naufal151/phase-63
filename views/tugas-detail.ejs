@@ -56,7 +56,15 @@
                         <div class="flex-grow">
                             <p class="leading-relaxed text-base"> Deadline: <b style="color: red;"> <%= tugas.deadline.toDateString() %>, <%= tugas.deadline.getHours() %>:<%= tugas.deadline.getMinutes() %> </b></p>
                             <p class="leading-relaxed text-base"> <%= tugas.deskripsi %> </p>
-                            <% if (tugas.length !==0) { %>
+                            <% if (user.role === "maba"){ %>
+                                <form action="/mabaUpload" method="post" enctype="multipart/form-data">
+                                    <label for="">Upload File: </label>
+                                    <input type="file" name="file" id="">
+                                    <button type="submit">Kumpulkan</button>
+                                </form>
+                            <% } %>
+                            
+                            <!-- <% if (tugas.length !==0) { %>
                                 <% maba.forEach((tugasList)=> { %>
                                     <p>Nama: <%= tugasList.nama %> </p>
                                     <p>File : <a href="/dashPanit/<%= tugasList.npm %>@<%= tugasList.file.date %>.png">Download</a></p>
@@ -64,7 +72,7 @@
                                 <% }) %>
                             <% } else { %>
                                 <h2>Belum ada yang mengumpulkan tugas!</h2>
-                                <% } %>   
+                                <% } %>    -->
                         </div>
                     </div>
                 </div>
